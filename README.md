@@ -1,13 +1,13 @@
-# Tau Utilities
+# Angular Tau Utilities
 
 Utilitis for AngularJS app
 
 ## Usage
 
-Include `tau-utils` in your app dependence, then all tau modules are reday for use.
+Include `angular-tau-utils` in your app dependence, then all tau modules are reday for use.
 
 ```js
-angular.module('myApp', ['tau-utils'])
+angular.module('myApp', ['angular-tau-utils'])
 ```
 
 ## Tau Modules
@@ -182,6 +182,10 @@ To build the source
     grunt build
 
 To test the source
+
+    grunt test
+
+To se the coverage
 
     grunt cov
 
