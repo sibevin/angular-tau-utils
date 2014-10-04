@@ -12,7 +12,7 @@ angular.module('myApp', ['angular-tau-utils'])
 
 ## Tau Modules
 
-`tau-utils` are separated into different tau modules, and you can use them indivially. For example, if only `tau-switcher` is used, you can just add `tau-switcher` in your app dependence.
+`angular-tau-utils` are separated into different tau modules, and you can use them individually. For example, if only `tau-switcher` is used, you can just add `tau-switcher` in your app dependence.
 
 ```js
 angular.module('myApp', ['tau-switcher'])
