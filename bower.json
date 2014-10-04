@@ -5,7 +5,9 @@
     "Sibevin Wang"
   ],
   "description": "Utilitis for AngularJS app",
-  "main": "\"dist/angular-tau-utils.js\"",
+  "main": [
+    "build/angular-tau-utils.js"
+  ],
   "moduleType": [
     "globals"
   ],

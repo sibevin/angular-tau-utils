@@ -8,7 +8,7 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'dist/angular-tau-utils.js',
+      'build/angular-tau-utils.js',
       'test/**/*.coffee'
     ],
     exclude: [
@@ -16,7 +16,7 @@ module.exports = function(config) {
     ],
     preprocessors: {
       'test/**/*.coffee': ['coffee'],
-      'dist/angular-tau-utils.js': ['coverage'],
+      'build/angular-tau-utils.js': ['coverage'],
     },
     reporters: ['progress', 'coverage'],
     port: 9876,

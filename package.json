@@ -2,7 +2,7 @@
   "name": "angular-tau-utils",
   "version": "0.9.0",
   "description": "Utilitis for AngularJS app",
-  "main": "dist/angular-tau-utils.js",
+  "main": "build/angular-tau-utils.js",
   "directories": {
     "lib": "lib"
   },

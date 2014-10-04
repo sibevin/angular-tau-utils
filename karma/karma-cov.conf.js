@@ -14,7 +14,7 @@ module.exports = function(config) {
     preprocessors: {
       'test/**/*.coffee': ['coffee'],
       'lib/**/*.js': ['coverage'],
-      'dist/angular-tau-utils.js': ['coverage'],
+      'build/angular-tau-utils.js': ['coverage'],
     },
     reporters: ['progress', 'coverage'],
     port: 9876,

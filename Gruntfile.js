@@ -48,7 +48,7 @@ module.exports = function(grunt) {
           'lib/angular-tau-utils.js',
           'lib/tau-switcher.js',
         ],
-        dest: 'dist/angular-tau-utils.js',
+        dest: 'build/angular-tau-utils.js',
       },
     },
     uglify: {
@@ -56,8 +56,8 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       dist: {
-        src: 'dist/angular-tau-utils.js',
-        dest: 'dist/angular-tau-utils.min.js',
+        src: 'build/angular-tau-utils.js',
+        dest: 'build/angular-tau-utils.min.js',
       }
     },
     watch: {
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
       ],
       all: [
         'lib/',
-        'dist/',
+        'build/',
         'coverage/',
         'test/**/*.js',
       ],
