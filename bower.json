@@ -1,0 +1,33 @@
+{
+  "name": "angular-tau-utils",
+  "version": "0.9.0",
+  "authors": [
+    "Sibevin Wang"
+  ],
+  "description": "Utilitis for AngularJS app",
+  "main": "\"dist/angular-tau-utils.js\"",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "angular",
+    "angularjs",
+    "tau",
+    "tau-utils",
+    "utility"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sibevin/angular-tau-utils",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "lib",
+    "test"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.26",
+    "angular-mocks": "~1.2.26"
+  }
+}
