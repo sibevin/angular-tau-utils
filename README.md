@@ -185,7 +185,7 @@ To test the source
 
     grunt test
 
-To se the coverage
+To see the coverage
 
     grunt cov
 
