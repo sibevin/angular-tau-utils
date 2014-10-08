@@ -1,5 +1,9 @@
 # Angular Tau Utilities
 
+[![Build Status](https://travis-ci.org/sibevin/angular-tau-utils.svg?branch=build)][travis]
+
+[travis]: https://travis-ci.org/sibevin/angular-tau-utils
+
 Utilitis for AngularJS app
 
 ## Usage
@@ -174,8 +178,8 @@ Clone the source from the repo
 
 Prepare development env, install bower and npm packages
 
-    npm install angular-tau-utils
-    bower install angular-tau-utils
+    npm install
+    bower install
 
 To build the source
 
