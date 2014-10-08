@@ -90,7 +90,7 @@ module.exports = function(grunt) {
       ]
     },
     coveralls: {
-      options: {
+      run: {
         src: 'coverage/**/lcov.info'
       }
     }
@@ -114,6 +114,6 @@ module.exports = function(grunt) {
   grunt.registerTask('cov', ['coffeelint', 'coffee', 'concat', 'karma:cov']);
   grunt.registerTask('clean_all', ['clean:all']);
   grunt.registerTask('clean_dev', ['clean:all', 'clean:pkg']);
-  grunt.registerTask('cov_all', ['cov', 'coveralls']);
+  grunt.registerTask('cov_all', ['cov', 'coveralls:run']);
 
 };
