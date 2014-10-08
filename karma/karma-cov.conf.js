@@ -26,7 +26,7 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     coverageReporter: {
       type: 'lcov',
-      dir: 'coverage/lcov.info'
+      dir: 'coverage/'
     },
     singleRun: true
   });
