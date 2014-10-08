@@ -25,8 +25,8 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['PhantomJS'],
     coverageReporter: {
-      type: 'html',
-      dir: 'coverage/'
+      type: 'lcov',
+      dir: 'coverage/lcov.info'
     },
     singleRun: true
   });

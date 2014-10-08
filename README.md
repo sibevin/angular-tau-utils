@@ -1,7 +1,9 @@
 # Angular Tau Utilities
 
+[![NPM version](https://badge.fury.io/js/angular-tau-utils.svg)][npm]
 [![Build Status](https://travis-ci.org/sibevin/angular-tau-utils.svg?branch=build)][travis]
 
+[npm]: http://badge.fury.io/js/angular-tau-utils
 [travis]: https://travis-ci.org/sibevin/angular-tau-utils
 
 Utilitis for AngularJS app

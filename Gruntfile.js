@@ -89,6 +89,11 @@ module.exports = function(grunt) {
         'node_modules/',
       ]
     },
+    coveralls: {
+      options: {
+        src: 'coverage/lcov.info'
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
@@ -99,6 +104,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-coveralls');
 
   // Default task.
   grunt.registerTask('default', ['coffeelint', 'coffee', 'concat', 'karma:unit', 'uglify', 'clean:lib']);
