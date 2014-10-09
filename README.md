@@ -1,9 +1,11 @@
 # Angular Tau Utilities
 
+[![Bower version](https://badge.fury.io/bo/angular-tau-utils.svg)][bower]
 [![NPM version](https://badge.fury.io/js/angular-tau-utils.svg)][npm]
 [![Build Status](https://travis-ci.org/sibevin/angular-tau-utils.svg?branch=build)][travis]
 [![Coverage Status](https://coveralls.io/repos/sibevin/angular-tau-utils/badge.png?branch=cover-check)][cover-check]
 
+[bower]: http://badge.fury.io/bo/angular-tau-utils
 [npm]: http://badge.fury.io/js/angular-tau-utils
 [travis]: https://travis-ci.org/sibevin/angular-tau-utils
 [cover-check]: https://coveralls.io/r/sibevin/angular-tau-utils?branch=cover-check
