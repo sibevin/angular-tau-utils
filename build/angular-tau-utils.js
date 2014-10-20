@@ -1,4 +1,4 @@
-/*! angular-tau-utils - v1.0.0 - 2014-10-08
+/*! angular-tau-utils - v1.1.0 - 2014-10-21
 * https://github.com/sibevin/angular-tau-utils/
 * Copyright (c) 2014 Sibevin Wang; Licensed MIT */
 (function() {
@@ -105,10 +105,19 @@
         }
       };
 
+      CycleSwitcher.prototype.setTab = function(tab) {
+        var index;
+        index = this._tabs.indexOf(tab);
+        if (index !== -1) {
+          return this._current_index = index;
+        }
+      };
+
       function CycleSwitcher(tabs) {
         if (tabs == null) {
           tabs = this.DEFAULT_TABS;
         }
+        this.setTab = __bind(this.setTab, this);
         this.isTab = __bind(this.isTab, this);
         this.getTab = __bind(this.getTab, this);
         this.reset = __bind(this.reset, this);
@@ -122,6 +131,97 @@
 
     })();
     return CycleSwitcher;
+  });
+
+}).call(this);
+
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  angular.module("tau-switcher").factory("PipeSwitcher", function() {
+    var PipeSwitcher;
+    PipeSwitcher = (function() {
+      PipeSwitcher.prototype.DEFAULT_TABS = ["none"];
+
+      PipeSwitcher.prototype._tabs = PipeSwitcher.DEFAULT_TABS;
+
+      PipeSwitcher.prototype._current_index = 0;
+
+      PipeSwitcher.prototype._init_index = 0;
+
+      PipeSwitcher.prototype.next = function() {
+        if (!this.isLast()) {
+          return this._current_index = this._current_index + 1;
+        }
+      };
+
+      PipeSwitcher.prototype.prev = function() {
+        if (!this.isFirst()) {
+          return this._current_index = this._current_index - 1;
+        }
+      };
+
+      PipeSwitcher.prototype.reset = function() {
+        return this._current_index = this._init_index;
+      };
+
+      PipeSwitcher.prototype.getTab = function() {
+        return this._tabs[this._current_index];
+      };
+
+      PipeSwitcher.prototype.isTab = function(tab) {
+        var _ref;
+        if (tab instanceof Array) {
+          return _ref = this.getTab(), __indexOf.call(tab, _ref) >= 0;
+        } else {
+          return tab === this.getTab();
+        }
+      };
+
+      PipeSwitcher.prototype.isFirst = function() {
+        return this._current_index - 1 < 0;
+      };
+
+      PipeSwitcher.prototype.isLast = function() {
+        return this._current_index + 1 >= this._tabs.length;
+      };
+
+      PipeSwitcher.prototype.setTab = function(tab) {
+        var index;
+        index = this._tabs.indexOf(tab);
+        if (index !== -1) {
+          return this._current_index = index;
+        }
+      };
+
+      function PipeSwitcher(tabs, init_tab) {
+        if (tabs == null) {
+          tabs = this.DEFAULT_TABS;
+        }
+        if (init_tab == null) {
+          init_tab = null;
+        }
+        this.setTab = __bind(this.setTab, this);
+        this.isLast = __bind(this.isLast, this);
+        this.isFirst = __bind(this.isFirst, this);
+        this.isTab = __bind(this.isTab, this);
+        this.getTab = __bind(this.getTab, this);
+        this.reset = __bind(this.reset, this);
+        this.prev = __bind(this.prev, this);
+        this.next = __bind(this.next, this);
+        this._tabs = tabs;
+        this._init_index = tabs.indexOf(init_tab);
+        if (this._init_index === -1) {
+          this._init_index = 0;
+        }
+        this.reset();
+      }
+
+      return PipeSwitcher;
+
+    })();
+    return PipeSwitcher;
   });
 
 }).call(this);

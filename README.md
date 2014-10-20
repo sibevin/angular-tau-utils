@@ -1,9 +1,11 @@
 # Angular Tau Utilities
 
+[![Bower version](https://badge.fury.io/bo/angular-tau-utils.svg)][bower]
 [![NPM version](https://badge.fury.io/js/angular-tau-utils.svg)][npm]
 [![Build Status](https://travis-ci.org/sibevin/angular-tau-utils.svg?branch=build)][travis]
 [![Coverage Status](https://coveralls.io/repos/sibevin/angular-tau-utils/badge.png?branch=cover-check)][cover-check]
 
+[bower]: http://badge.fury.io/bo/angular-tau-utils
 [npm]: http://badge.fury.io/js/angular-tau-utils
 [travis]: https://travis-ci.org/sibevin/angular-tau-utils
 [cover-check]: https://coveralls.io/r/sibevin/angular-tau-utils?branch=cover-check
@@ -70,6 +72,8 @@ ts.getTab(); // use getTab() to get the current tab
 // "contact"
 
 ts.setTab("home"); // use setTab() to set the current tab with the given tab
+ts.isTab("home");
+// true
 ```
 
 `TabSwitcher` is for handling the tab switching between serial of tab bottoms.
@@ -153,6 +157,11 @@ cs.getTab();
 
 cs.reset(); // use reset() to switch tab to the init tab
 cs.isTab("case1");
+// true
+
+cs.setTab("case2"); // use setTab() to set the current tab
+cs.isTab("case2");
+// true
 ```
 
 `CycleSwitcher` is for handling cycle-switching tabs.
@@ -166,6 +175,68 @@ cs.isTab("case1");
   Case 2
 </div>
 <div ng-show="cs.isTab('case3')">
+  Case 3
+</div>
+```
+
+#### PipeSwitcher
+
+`PipeSwitcher` is a service to handle a serial of ordered tabs, the difference between `PipeSwitcher` and `CycleSwitcher` is that `PipeSwitcher` is not cycled, i.e., when calling `next()` at the last tab or `prev()` at the first tab, `PipeSwitcher` would keep the current tab not changed. Besides, `PipeSwitcher` can assign the initial tab.
+
+```js
+tabs = ["case1", "case2", "case3"];
+ps = new PipeSwitcher(tabs, "case2"); // create a pipe switcher object with a given tab array and the initial tab, if no initial tab is given, the first tab would be the initial tab
+ps.isTab("case2"); // the default init tab is the first tab in the array
+// true
+
+ps.isTab("case1"); // use isTab() to test the current tab and given tab are matched or not
+// false
+
+ps.getTab(); // use getTab() to get the current tab
+// "case2"
+
+ps.next(); // use next() to switch tab to the next tab
+ps.getTab();
+// "case3"
+ps.next(); // if the current tab is the last tab, call next() would do nothing
+ps.getTab();
+// "case3"
+ps.isLast(); // use isLast() to check the current tab is the last tab or not
+// true
+ps.isFirst(); // use isFirst() to check the current tab is the first tab or not
+// false
+
+ps.prev(); // use prev() to switch tab to the previous tab
+ps.getTab();
+// "case2"
+ps.prev();
+ps.getTab();
+// "case1"
+ps.prev(); // if the current tab is the first tab, call prev() would do nothing
+ps.getTab();
+// "case1"
+
+ps.reset(); // use reset() to switch tab to the init tab
+ps.isTab("case2");
+// true
+
+ps.setTab("case1"); // use setTab() to set the current tab
+ps.isTab("case1");
+// true
+```
+
+`PipeSwitcher` is for handling switching tabs.
+
+```html
+<a ng-click="ps.prev()" ng-hide="ps.isFirst()"> Previse Case </a>
+<a ng-click="ps.next()" ng-hide="ps.isLast()"> Next Case </a>
+<div ng-show="ps.isTab('case1')">
+  Case 1
+</div>
+<div ng-show="ps.isTab('case2')">
+  Case 2
+</div>
+<div ng-show="ps.isTab('case3')">
   Case 3
 </div>
 ```
@@ -196,6 +267,15 @@ To test the source
 To see the coverage
 
     grunt cov
+
+## Contributing
+
+1. Fork it ( https://github.com/sibevin/angular-tau-utils/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Write tests for your code
+4. Commit your changes (both code and tests) (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create a new Pull Request
 
 ## Authors
 
