@@ -80,7 +80,6 @@ module.exports = function(grunt) {
       ],
       all: [
         'lib/',
-        'build/',
         'coverage/',
         'test/**/*.js',
       ],
