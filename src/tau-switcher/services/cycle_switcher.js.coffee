@@ -29,6 +29,10 @@ angular.module("tau-switcher").factory "CycleSwitcher", ->
       else
         (tab == @getTab())
 
+    setTab: (tab) =>
+      index = @_tabs.indexOf(tab)
+      @_current_index = index unless index == -1
+
     constructor: (tabs = @DEFAULT_TABS) ->
       @_tabs = tabs
       @reset()

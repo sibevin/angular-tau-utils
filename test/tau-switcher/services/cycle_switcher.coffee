@@ -100,3 +100,20 @@ describe "tab-switcher", ->
       expect(cs.getTab()).toBe first_tab
       cs.prev()
       expect(cs.getTab()).toBe last_tab
+
+  describe "setTab", ->
+    it "should set the current tab to the given tab", inject (CycleSwitcher) ->
+      target_tab = "tab2"
+      tabs = ["tab1", target_tab, "tab3"]
+      cs = new CycleSwitcher(tabs)
+      cs.setTab(target_tab)
+      expect(cs.getTab()).toBe target_tab
+
+    it "should keep the current tab
+      if the given tab is not in the tabs", inject (CycleSwitcher) ->
+      invalid_tab = "invalid_tab"
+      first_tab = "tab1"
+      tabs = [first_tab, "tab2", "tab3"]
+      cs = new CycleSwitcher(tabs)
+      cs.setTab(invalid_tab)
+      expect(cs.getTab()).toBe first_tab
