@@ -44,5 +44,6 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-coffee-preprocessor": "~0.2.1",
     "grunt-coveralls": "~1.0.0"
+    "grunt-codo": "~0.2.0"
   }
 }
