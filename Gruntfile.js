@@ -74,6 +74,11 @@ module.exports = function(grunt) {
         tasks: ['karma:watch'],
       }
     },
+    codo: {
+      src: [
+        'src'
+      ]
+    },
     clean: {
       lib: [
         'lib/',
@@ -82,6 +87,7 @@ module.exports = function(grunt) {
         'lib/',
         'build/',
         'coverage/',
+        'doc/',
         'test/**/*.js',
       ],
       pkg: [
@@ -99,6 +105,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-codo');
 
   // Default task.
   grunt.registerTask('default', ['coffeelint', 'coffee', 'concat', 'karma:unit', 'uglify', 'clean:lib']);
@@ -108,5 +115,6 @@ module.exports = function(grunt) {
   grunt.registerTask('cov', ['coffeelint', 'coffee', 'concat', 'karma:cov']);
   grunt.registerTask('clean_all', ['clean:all']);
   grunt.registerTask('clean_dev', ['clean:all', 'clean:pkg']);
+  grunt.registerTask('doc', ['coffeelint', 'coffee', 'concat', 'codo']);
 
 };
