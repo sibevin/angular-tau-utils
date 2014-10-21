@@ -1,4 +1,4 @@
-/*! angular-tau-utils - v1.1.0 - 2014-10-21
+/*! angular-tau-utils - v1.1.1 - 2014-10-21
 * https://github.com/sibevin/angular-tau-utils/
 * Copyright (c) 2014 Sibevin Wang; Licensed MIT */
 (function() {
