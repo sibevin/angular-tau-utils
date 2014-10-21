@@ -1,3 +1,7 @@
+## 1.1.1 / 2014-10-21
+
+* [Doc] Add code document
+
 ## 1.1.0 / 2014-10-20
 
 * [Feature] Add pipe-switcher service in tau-switcher module
