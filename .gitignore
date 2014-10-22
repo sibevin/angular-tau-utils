@@ -1,0 +1,11 @@
+# outputs
+/app
+
+# Gemfile.lock
+Gemfile.lock
+
+# vim artifacts
+**.swp
+
+# sass cache
+.sass-cache
