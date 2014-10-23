@@ -1,9 +1,283 @@
 doctype html
 html
   head
+    link href="css/vendor/base-min.css" rel="stylesheet"
+    link href="css/vendor/pure-nr-min.css" rel="stylesheet"
     link href="css/app.css" rel="stylesheet"
+    script src="js/vendor/angular.min.js"
+    script src="js/vendor/angular-tau-utils.min.js"
     script src="js/app.js"
   body
-    h1 scs-playground example
-    .red-text A css test
-    #time_display
+    h1 Angular Tau Utilities
+    p Utilitis for AngularJS app
+    p.badge-list
+      <a href="http://badge.fury.io/bo/angular-tau-utils"><img src="https://camo.githubusercontent.com/9f4433b8536a3a016093418cfad10641119cc05f/68747470733a2f2f62616467652e667572792e696f2f626f2f616e67756c61722d7461752d7574696c732e737667" alt="Bower version" data-canonical-src="https://badge.fury.io/bo/angular-tau-utils.svg" style="max-width:100%;"></a>
+      <a href="http://badge.fury.io/js/angular-tau-utils"><img src="https://camo.githubusercontent.com/409ab02140989a1faa90e9cb5faf6a002e6da9e6/68747470733a2f2f62616467652e667572792e696f2f6a732f616e67756c61722d7461752d7574696c732e737667" alt="NPM version" data-canonical-src="https://badge.fury.io/js/angular-tau-utils.svg" style="max-width:100%;"></a>
+      <a href="https://travis-ci.org/sibevin/angular-tau-utils"><img src="https://camo.githubusercontent.com/ab86af64e9967648157084703c757994fc1fb23d/68747470733a2f2f7472617669732d63692e6f72672f7369626576696e2f616e67756c61722d7461752d7574696c732e7376673f6272616e63683d6275696c64" alt="Build Status" data-canonical-src="https://travis-ci.org/sibevin/angular-tau-utils.svg?branch=build" style="max-width:100%;"></a>
+      <a href="https://coveralls.io/r/sibevin/angular-tau-utils?branch=cover-check"><img src="https://camo.githubusercontent.com/c5064a7ab762fc45d1cb715872dc197fe46b5395/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f7369626576696e2f616e67756c61722d7461752d7574696c732f62616467652e706e673f6272616e63683d636f7665722d636865636b" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/sibevin/angular-tau-utils/badge.png?branch=cover-check" style="max-width:100%;"></a>
+    h2 Usage
+    p Include angular-tau-utils in your app dependence, then all tau modules are reday to use.
+    pre.block-bd
+      code
+        | angular.module('myApp', ['angular-tau-utils'])
+    h2 Tau Modules
+    p angular-tau-utils are separated into different tau modules, and you can use them individually. For example, if only tau-switcher is used, you can just add tau-switcher in your app dependence.
+    pre.block-bd
+      code
+        | angular.module('myApp', ['tau-switcher'])
+    p
+    .block-dd
+      | Tau Switcher (
+      code
+        | module: tau-switcher
+      | )
+    .block-bdd
+      p
+        | tau-switcher module provides several services: TabSwitcher, BoolSwitcher, CycleSwitcher and PipeSwicher.
+    .block-d
+      | Tab Switcher (
+      code
+        | service: TabSwitcher
+      | )
+    .block
+      p
+        | TabSwitcher is a service to handle the tab-switching. A tab can be any kinds of object, but string should be enough to handle most of usage cases.
+    .block
+      .ex ng-controller="TabSwitcherExCtrl"
+        .ex-tab-menu
+          ul
+            li
+              a herf="" ng-click="ts.switch('home')" ng-class="{active: ts.isTab('home')}"
+                | Home
+            li
+              a herf="" ng-click="ts.switch('product')" ng-class="{active: ts.isTab('product')}"
+                | Product
+            li
+              a herf="" ng-click="ts.setTab('contact')" ng-class="{active: ts.isTab('contact')}"
+                | Contact
+        .ex-tab-page
+          div ng-show="ts.isTab('home')"
+            h1 Home
+            p
+              | The initial tab is "home".
+          div ng-show="ts.isTab('product')"
+            h1 Product
+            p
+              | If you click "product" tab again, it would go back to the initial tab - "home".
+          div  ng-show="ts.isTab('contact')"
+            h1 Contact
+            p
+              | If you click "contact" tab again, nothing happened.
+        p
+          code
+            | ts.getTab() = {{ts.getTab()}}
+    .block
+      .badge js
+      pre
+        code
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+
+            app.controller("MyCtrl", [
+              '$scope', 'TabSwitcher', function($scope, TabSwitcher) {
+                <span class="mk-blue">$scope.ts = new TabSwitcher("home")</span>;
+              }
+            ]);
+      .badge html
+      pre
+        code
+          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: <span class="mk-blue">ts.isTab('home')</span>}&quot; ng-click=&quot;<span class="mk-blue">ts.switch('home')</span>&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab('product')}&quot; ng-click=&quot;ts.switch('product')&quot;&gt;Product&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab('contact')}&quot; ng-click=&quot;<span class="mk-blue">ts.setTab('contact')</span>&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>  &lt;div ng-show=&quot;<span class="mk-blue">ts.isTab('home')</span>&quot;&gt;&lt;h1&gt;Home&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ts.isTab('product')&quot;&gt;&lt;h1&gt;Product&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ts.isTab('contact')&quot;&gt;&lt;h1&gt;Contact&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+    .block-d
+      | Bool Switcher (
+      code
+        | service: BoolSwitcher
+      | )
+    .block
+      p
+        | BoolSwitcher is a simplified version of TabSwitcher, only for handling boolean values.
+    .block
+      .ex ng-controller="BoolSwitcherExCtrl"
+        .ex-switch-btn ng-class="{on: bs.getBool()}" ng-click="bs.switch()"
+          .sb-bar
+        p
+          code
+            | bs.getBool() = {{bs.getBool()}}
+    .block
+      .badge js
+      pre
+        code
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+
+            app.controller("MyCtrl", [
+              '$scope', 'BoolSwitcher', function($scope, TabSwitcher) {
+                <span class="mk-blue">$scope.bs = new BoolSwitcher()</span>;
+              }
+            ]);
+      .badge html
+      pre
+        code
+          | &lt;div class=&quot;switch-btn&quot; ng-class=&quot;{on: <span class="mk-blue">bs.getBool()</span>}&quot; ng-click=&quot;<span class="mk-blue">bs.switch()</span>&quot;&gt;<br/>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+    .block-d
+      | Cycle Switcher (
+      code
+        | service: CycleSwitcher
+      | )
+    .block
+      p
+        | CycleSwitcher is a service to handle a serial of ordered tabs, the difference between TabSwitcher and CycleSwitcher is CycleSwitcher must assign a tab array when creating a CycleSwitcher object, and the current tab in CycleSwitcher is switched between these tabs only.
+    .block
+      .ex ng-controller="CycleSwitcherExCtrl"
+        .ex-tab-menu
+          ul
+            li
+              a herf="" ng-click="cs.prev()"
+                | << Previous
+            li
+              a herf="" ng-click="cs.next()"
+                | Next >>
+            li
+              a herf="" ng-click="cs.reset()"
+                | Back to first
+            li
+              a herf="" ng-click="cs.setTab('case2')"
+                | Go to case2
+        .ex-tab-page
+          div ng-show="cs.isTab('case1')"
+            h1 Case1
+            p
+              | The initial tab is the first tab, calling reset() would go back here.
+            p
+              | If you click "Previous", it would go to the last tab.
+          div ng-show="cs.isTab('case2')"
+            h1 Case2
+          div ng-show="cs.isTab('case3')"
+            h1 Case3
+            p
+              | Here is the last tab
+            p
+              | If you click "Next", it would go to the first tab.
+        p
+          code
+            | cs.getTab() = {{cs.getTab()}}
+    .block
+      .badge js
+      pre
+        code
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+
+            app.controller("MyCtrl", [
+              '$scope', '<span class="mk-blue">CycleSwitcher</span>', function($scope, <span class="mk-blue">CycleSwitcher</span>) {
+                <span class="mk-blue">$scope.cs = new CycleSwitcher(["case1", "case2", "case3"])</span>;
+              }
+            ]);
+      .badge html
+      pre
+        code
+          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.reset()</span>&quot;&gt;Back to first&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.setTab('case2')</span>&quot;&gt;Go to case2&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>  &lt;div ng-show=&quot;<span class="mk-blue">cs.isTab('case1')</span>&quot;&gt;&lt;h1&gt;Case1&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;cs.isTab('case2')&quot;&gt;&lt;h1&gt;Case2&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;cs.isTab('case3')&quot;&gt;&lt;h1&gt;Case3&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+    .block-d
+      | Pipe Switcher (
+      code
+        | service: PipeSwitcher
+      | )
+    .block
+      p
+        | PipeSwitcher is a service to handle a serial of ordered tabs, the difference between PipeSwitcher and CycleSwitcher is that PipeSwitcher is not cycled, i.e., when calling next() at the last tab or prev() at the first tab, PipeSwitcher would keep the current tab not changed. Besides, PipeSwitcher can assign the initial tab, i.e., the initial tab can be different to the first tab.
+    .block
+      .ex ng-controller="PipeSwitcherExCtrl"
+        .ex-tab-menu
+          ul
+            li
+              a herf="" ng-class="{disable: ps.isFirst()}" ng-click="ps.prev()"
+                | << Previous
+            li
+              a herf="" ng-class="{disable: ps.isLast()}" ng-click="ps.next()"
+                | Next >>
+            li
+              a herf="" ng-click="ps.reset()"
+                | Back to step2
+            li
+              a herf="" ng-click="ps.setTab('step3')"
+                | Go to step3
+        .ex-tab-page
+          div ng-show="ps.isTab('step1')"
+            h1 Step1
+            p
+              | Here is the first tab.
+            p
+              | If you click "Previous", nothing happened.
+          div ng-show="ps.isTab('step2')"
+            h1 Step2
+            p
+              | This is the initial tab, calling reset() would go back here.
+          div ng-show="ps.isTab('step3')"
+            h1 Step3
+          div ng-show="ps.isTab('step4')"
+            h1 Step4
+            p
+              | Here is the last tab.
+            p
+              | If you click "Next", nothing happened.
+        p
+          code
+            | ps.getTab() = {{ps.getTab()}}
+    .block
+      .badge js
+      pre
+        code
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+
+            app.controller("MyCtrl", [
+              '$scope', '<span class="mk-blue">PipeSwitcher</span>', function($scope, <span class="mk-blue">PipeSwitcher</span>) {
+                <span class="mk-blue">$scope.ps = new PipeSwitcher(["step1", "step2", "step3", "step4"], "step2")</span>;
+              }
+            ]);
+      .badge html
+      pre
+        code
+          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isFirst()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isLast()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.reset()</span>&quot;&gt;Back to step2&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.setTab('step3')</span>&quot;&gt;Go to step3&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>  &lt;div ng-show=&quot;<span class="mk-blue">ps.isTab('step1')</span>&quot;&gt;&lt;h1&gt;Step1&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ps.isTab('step2')&quot;&gt;&lt;h1&gt;Step2&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ps.isTab('step3')&quot;&gt;&lt;h1&gt;Step3&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ps.isTab('step4')&quot;&gt;&lt;h1&gt;Step4&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+    h2 Another ng-switch ?
+    p
+      | Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.
+    h2 Development
+
+    p
+      | Clone the source from the repo
+    pre.block-bd
+      code
+        | git clone git@github.com:sibevin/angular-tau-utils.git
+    p
+      | Prepare development env, install bower and npm packages
+    pre.block-bd
+      code
+        | npm install
+          bower install
+    p To build the source
+    pre.block-bd
+      code grunt build
+    p To test the source
+    pre.block-bd
+      code grunt test
+    p To see the coverage
+    pre.block-bd
+      code grunt cov
+    h2 Contributing
+    p
+      | 1. Fork it ( https://github.com/sibevin/angular-tau-utils/fork )
+    p
+      | 2. Create your feature branch (git checkout -b my-new-feature)
+    p
+      | 3. Write tests for your code
+    p
+      | 4. Commit your changes (both code and tests) (git commit -am 'Add some feature')
+    p
+      | 5. Push to the branch (git push origin my-new-feature)
+    p
+      | 6. Create a new Pull Request
+
+    h2 Authors
+
+    p Sibevin Wang
+
+    h2 Copyright
+
+    p
+      | Copyright (c) 2014 Sibevin Wang. Released under the MIT license.

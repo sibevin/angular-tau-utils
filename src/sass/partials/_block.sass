@@ -1,0 +1,22 @@
+@import "compass/css3/box-sizing"
+
+=block-area
+  +box-sizing(border-box)
+  width: 100%
+  padding: 8px
+.block
+  +block-area
+  border: 1px solid  #ddd
+  border-top: none
+.block-d
+  +block-area
+  background: #ddd
+.block-dd
+  +block-area
+  background: #aaa
+.block-bd
+  +block-area
+  border: 1px solid  #ddd
+.block-bdd
+  +block-area
+  border: 1px solid  #aaa

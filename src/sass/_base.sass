@@ -1,0 +1,29 @@
+@import "compass/typography/vertical_rhythm"
+ 
+$base-font-size: $fs_def
+$base-line-height: $lh_def
+
+body
+  margin: 20px
+
+.ex
+  .tab-page
+    border: 1px solid #eee
+    padding: 12px
+  .tb-content
+
+//h1
+  +adjust-font-size-to($fs_xl)
+
+//h2, h3, h4, h5, h6
+  +leader(0.5)
+  +adjust-font-size-to($fs_l)
+  &:before
+    content: "■ "
+    font-size: $fs_l
+p
+  +adjust-font-size-to($fs_def)
+
+.badge-list
+  a
+    padding-right: 5px

@@ -1,0 +1,51 @@
+@import "compass/css3"
+
+.ex
+  width: 800px
+  .ex-tab-menu
+    border: 1px solid #eee
+    ul
+      display: inline-block
+      vertical-align: middle
+      position: relative
+      top: 0px
+      left: 0px
+      padding: 0px
+      margin: 0px
+      li
+        display: inline-block
+        a
+          padding: 8px 20px
+          display: block
+          cursor: pointer
+          &:hover
+            background: #eee
+        .active
+          background: #eee
+        .disable
+          color: #ddd
+          &:hover
+            background: #fff
+  .ex-tab-page
+    min-height: 200px
+    border: 1px solid #eee
+    padding: 12px
+
+  $btn_s: 18px
+  .ex-switch-btn
+    display: inline-block
+    border: 3px solid #555
+    cursor: pointer
+    +border-radius(12px)
+    width: $btn_s * 3.5
+    background: #555
+    .sb-bar
+      +border-radius(9px)
+      height: $btn_s
+      width: $btn_s
+      background: #999
+      float: left
+  .on
+    .sb-bar
+      background: #eee
+      float: right
