@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Documentation</title>
+  <script src='../javascript/application.js'></script>
+  <script src='../javascript/search.js'></script>
+  <link rel='stylesheet' href='../stylesheets/application.css' type='text/css'>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../extra/README.md.html' title='Codo'>
+      Codo
+    </a>
+    &raquo;
+    <a href='../alphabetical_index.html' title='Index'>
+      Index
+    </a>
+    &raquo;
+    <span class='title'>README.md</span>
+  </div>
+</div>
+    <div id='content'>
+      <nav class='toc'>
+        <p class='title'>
+          <a class='hide_toc' href='#'>
+            <strong>Table of Contents</strong>
+          </a>
+          <small>
+            (<a class='float_toc' href='#'>left</a>)
+          </small>
+        </p>
+      </nav>
+      <div id='filecontents'>
+        <h1 id="angular-tau-utilities">Angular Tau Utilities</h1><p><a href="http://badge.fury.io/bo/angular-tau-utils"><img src="https://badge.fury.io/bo/angular-tau-utils.svg" alt="Bower version"></a>
+<a href="http://badge.fury.io/js/angular-tau-utils"><img src="https://badge.fury.io/js/angular-tau-utils.svg" alt="NPM version"></a>
+<a href="https://travis-ci.org/sibevin/angular-tau-utils"><img src="https://travis-ci.org/sibevin/angular-tau-utils.svg?branch=build" alt="Build Status"></a>
+<a href="https://coveralls.io/r/sibevin/angular-tau-utils?branch=cover-check"><img src="https://coveralls.io/repos/sibevin/angular-tau-utils/badge.png?branch=cover-check" alt="Coverage Status"></a></p><p>Utilitis for AngularJS app</p><ul>
+<li>Demo: <a href="http://sibevin.github.io/angular-tau-utils/">http://sibevin.github.io/angular-tau-utils/</a></li>
+<li>Doc: <a href="http://sibevin.github.io/angular-tau-utils/doc/index.html">http://sibevin.github.io/angular-tau-utils/doc/index.html</a></li>
+<li>Github: <a href="https://github.com/sibevin/angular-tau-utils">https://github.com/sibevin/angular-tau-utils</a></li>
+<li>Issue Report: <a href="https://github.com/sibevin/angular-tau-utils/issues">https://github.com/sibevin/angular-tau-utils/issues</a></li>
+</ul>
+<h2 id="usage">Usage</h2><p>Include <code>angular-tau-utils</code> in your app dependence, then all tau modules are reday to use.</p><pre><code class="lang-js">angular.module(&#39;myApp&#39;, [&#39;angular-tau-utils&#39;])
+</code></pre>
+<h2 id="tau-modules">Tau Modules</h2><p><code>angular-tau-utils</code> is separated into different tau modules, and you can use them individually. For example, if only <code>tau-switcher</code> is used, you can just add <code>tau-switcher</code> in your app dependence.</p><pre><code class="lang-js">angular.module(&#39;myApp&#39;, [&#39;tau-switcher&#39;])
+</code></pre><p>Here is the tua module list:</p><ul>
+<li>tau-switcher</li>
+</ul>
+<h3 id="tau-switcher">tau-switcher</h3><p><code>tau-switcher</code> module provides several services: <code>TabSwitcher</code>, <code>BoolSwitcher</code>, <code>CycleSwitcher</code> and <code>PipeSwitcher</code>.</p><h4 id="tabswitcher">TabSwitcher</h4><p><code>TabSwitcher</code> is a service to handle the tab-switching. A tab can be any kinds of object, but <code>string</code> should be enough to handle most of usage cases.</p><pre><code class="lang-js">var app = angular.module(&#39;MyApp&#39;, [&quot;tau-switcher&quot;]);
+
+app.controller(&quot;MyCtrl&quot;, [
+  &#39;$scope&#39;, &#39;TabSwitcher&#39;, function($scope, TabSwitcher) {
+    $scope.ts = new TabSwitcher(&quot;home&quot;);
+  }
+]);
+</code></pre>
+<pre><code class="lang-html">&lt;div class=&quot;tab-menu&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab(&#39;home&#39;)}&quot; ng-click=&quot;ts.switch(&#39;home&#39;)&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab(&#39;product&#39;)}&quot; ng-click=&quot;ts.switch(&#39;product&#39;)&quot;&gt;Product&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab(&#39;contact&#39;)}&quot; ng-click=&quot;ts.setTab(&#39;contact&#39;)&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tab-page&quot;&gt;
+  &lt;div ng-show=&quot;ts.isTab(&#39;home&#39;)&quot;&gt;&lt;h1&gt;Home&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;ts.isTab(&#39;product&#39;)&quot;&gt;&lt;h1&gt;Product&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;ts.isTab(&#39;contact&#39;)&quot;&gt;&lt;h1&gt;Contact&lt;/h1&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="boolswitcher">BoolSwitcher</h4><p><code>BoolSwitcher</code> is a simplified version of <code>TabSwitcher</code>, only for handling boolean values.</p><pre><code class="lang-js">var app = angular.module(&#39;MyApp&#39;, [&quot;tau-switcher&quot;]);
+
+app.controller(&quot;MyCtrl&quot;, [
+  &#39;$scope&#39;, &#39;BoolSwitcher&#39;, function($scope, BoolSwitcher) {
+    $scope.bs = new BoolSwitcher();
+  }
+]);
+</code></pre>
+<pre><code class="lang-html">&lt;div class=&quot;switch-btn&quot; ng-class=&quot;{on: bs.getBool()}&quot; ng-click=&quot;bs.switch()&quot;&gt;
+  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="cycleswitcher">CycleSwitcher</h4><p><code>CycleSwitcher</code> is a service to handle a serial of ordered tabs, the difference between <code>TabSwitcher</code> and <code>CycleSwitcher</code> is <code>CycleSwitcher</code> must assign a tab array when creating a <code>CycleSwitcher</code> object, and the current tab in <code>CycleSwitcher</code> is switched between these tabs only.</p><pre><code class="lang-js">var app = angular.module(&#39;MyApp&#39;, [&quot;tau-switcher&quot;]);
+
+app.controller(&quot;MyCtrl&quot;, [
+  &#39;$scope&#39;, &#39;CycleSwitcher&#39;, function($scope, CycleSwitcher) {
+    $scope.cs = new CycleSwitcher([&quot;case1&quot;, &quot;case2&quot;, &quot;case3&quot;]);
+  }
+]);
+</code></pre><p><code>CycleSwitcher</code> is for handling cycle-switching tabs.</p><pre><code class="lang-html">&lt;div class=&quot;tab-menu&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cs.prev()&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cs.next()&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cs.reset()&quot;&gt;Back to first&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cs.setTab(&#39;case2&#39;)&quot;&gt;Go to case2&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tab-page&quot;&gt;
+  &lt;div ng-show=&quot;cs.isTab(&#39;case1&#39;)&quot;&gt;&lt;h1&gt;Case1&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;cs.isTab(&#39;case2&#39;)&quot;&gt;&lt;h1&gt;Case2&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;cs.isTab(&#39;case3&#39;)&quot;&gt;&lt;h1&gt;Case3&lt;/h1&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="pipeswitcher">PipeSwitcher</h4><p><code>PipeSwitcher</code> is a service to handle a serial of ordered tabs, the difference between <code>PipeSwitcher</code> and <code>CycleSwitcher</code> is that <code>PipeSwitcher</code> is not cycled, i.e., when calling <code>next()</code> at the last tab or <code>prev()</code> at the first tab, nothing happened. Besides, <code>PipeSwitcher</code> can assign the initial tab, i.e., the initial tab can be different to the first tab.</p><pre><code class="lang-js">var app = angular.module(&#39;MyApp&#39;, [&quot;tau-switcher&quot;]);
+
+app.controller(&quot;MyCtrl&quot;, [
+  &#39;$scope&#39;, &#39;PipeSwitcher&#39;, function($scope, PipeSwitcher) {
+    $scope.ps = new PipeSwitcher([&quot;step1&quot;, &quot;step2&quot;, &quot;step3&quot;, &quot;step4&quot;], &quot;step2&quot;);
+  }
+]);
+</code></pre>
+<pre><code class="lang-html">&lt;div class=&quot;tab-menu&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: ps.isFirst()}&quot; ng-click=&quot;ps.prev()&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: ps.isLast()}&quot; ng-click=&quot;ps.next()&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;ps.reset()&quot;&gt;Back to step2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;ps.setTab(&#39;step3&#39;)&quot;&gt;Go to step3&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tab-page&quot;&gt;
+  &lt;div ng-show=&quot;ps.isTab(&#39;step1&#39;)&quot;&gt;&lt;h1&gt;Step1&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;ps.isTab(&#39;step2&#39;)&quot;&gt;&lt;h1&gt;Step2&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;ps.isTab(&#39;step3&#39;)&quot;&gt;&lt;h1&gt;Step3&lt;/h1&gt;&lt;/div&gt;
+  &lt;div ng-show=&quot;ps.isTab(&#39;step4&#39;)&quot;&gt;&lt;h1&gt;Step4&lt;/h1&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="another-ng-switch-">Another ng-switch ?</h4><p>Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.</p><h2 id="development">Development</h2><p>Clone the source from the repo</p><pre><code>git clone git@github.com:sibevin/angular-tau-utils.git
+</code></pre><p>Prepare development env, install bower and npm packages</p><pre><code>npm install
+bower install
+</code></pre><p>To build the source</p><pre><code>grunt build
+</code></pre><p>To test the source</p><pre><code>grunt test
+</code></pre><p>To see the coverage</p><pre><code>grunt cov
+</code></pre><h2 id="contributing">Contributing</h2>
+<ol>
+<li>Fork it ( <a href="https://github.com/sibevin/angular-tau-utils/fork">https://github.com/sibevin/angular-tau-utils/fork</a> )</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Write tests for your code</li>
+<li>Commit your changes (both code and tests) (<code>git commit -am &#39;Add some feature&#39;</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
+<h2 id="authors">Authors</h2><p>Sibevin Wang</p><h2 id="copyright">Copyright</h2><p>Copyright (c) 2014 Sibevin Wang. Released under the MIT license.</p>
+      </div>
+    </div>
+    <div id='footer'>
+  October 23, 14 12:58:53 by
+  <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
+    Codo
+  </a>
+  2.0.9
+  &#10034;
+  Press H to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/netzpirat' target='_parent'>@netzpirat</a>
+  &#10034;
+  <a href='http://twitter.com/_inossidabile' target='_parent'>@_inossidabile</a>
+</div>
+<iframe id='search_frame'></iframe>
+<div id='fuzzySearch'>
+  <input type='text'>
+  <ol></ol>
+</div>
+<div id='help'>
+  <p>
+    Quickly fuzzy find classes, mixins, methods, file:
+  </p>
+  <ul>
+    <li>
+      <span>T</span>
+      Open fuzzy finder dialog
+    </li>
+  </ul>
+  <p>
+    Control the navigation frame:
+  </p>
+  <ul>
+    <li>
+      <span>L</span>
+      Toggle list view
+    </li>
+    <li>
+      <span>C</span>
+      Show class list
+    </li>
+    <li>
+      <span>I</span>
+      Show mixin list
+    </li>
+    <li>
+      <span>F</span>
+      Show file list
+    </li>
+    <li>
+      <span>M</span>
+      Show method list
+    </li>
+    <li>
+      <span>E</span>
+      Show extras list
+    </li>
+  </ul>
+  <p>
+    You can focus and blur the search input:
+  </p>
+  <ul>
+    <li>
+      <span>S</span>
+      Focus search input
+    </li>
+    <li>
+      <span>Esc</span>
+      Blur search input
+    </li>
+  </ul>
+</div>
+  </body>
+</html>

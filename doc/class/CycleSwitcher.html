@@ -19,60 +19,60 @@
       Index
     </a>
     &raquo;
-    <span class='title'>TabSwitcher</span>
+    <span class='title'>CycleSwitcher</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        TabSwitcher
+        CycleSwitcher
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>src&#47;tau-switcher&#47;services&#47;tab_switcher.js.coffee</td>
+          <td>src&#47;tau-switcher&#47;services&#47;cycle_switcher.js.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>The tab switcher class</p>
+  <p>The cycle switcher class</p>
 </div>
 <div class='tags'>
 </div>
       <h2>Variables Summary</h2>
       <dl class='constants'>
-  <dt id='DEFAULT_TAB-variable'>
-    DEFAULT_TAB
+  <dt id='DEFAULT_TABS-variable'>
+    DEFAULT_TABS
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>&quot;none&quot;</code></pre>
+    <pre><code class='coffeescript'>[&quot;none&quot;]</code></pre>
     <div class='docstring'>
-  <p>The default initial tab</p>
+  <p>The default initial tabs</p>
 </div>
 <div class='tags'>
 </div>
   </dd>
-  <dt id='_init_tab-variable'>
-    _init_tab
+  <dt id='_tabs-variable'>
+    _tabs
     =
   </dt>
   <dd>
     <pre><code class='coffeescript'></code></pre>
     <div class='docstring'>
-  <p>The initial tab</p>
+  <p>The initial tabs</p>
 </div>
 <div class='tags'>
 </div>
   </dd>
-  <dt id='_current_tab-variable'>
-    _current_tab
+  <dt id='_current_index-variable'>
+    _current_index
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'></code></pre>
+    <pre><code class='coffeescript'>0</code></pre>
     <div class='docstring'>
-  <p>The current tab</p>
+  <p>The current index</p>
 </div>
 <div class='tags'>
 </div>
@@ -80,6 +80,34 @@
 </dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#next-dynamic'>
+        #
+(void)
+<b>next</b><span>()</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Move to the next tab, move to the first tab if the current tab is the last one.
+
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#prev-dynamic'>
+        #
+(void)
+<b>prev</b><span>()</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Move to the previous tab, move to the last tab if the current tab is the first one.
+
+    </span>
+  </li>
   <li>
     <span class='signature'>
       <a href='#reset-dynamic'>
@@ -90,7 +118,7 @@
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Reset the current tab to the initial tab 
+      Reset the current tab to the initial tab. 
     </span>
   </li>
   <li>
@@ -103,20 +131,7 @@
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Get the current tag 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#setTab-dynamic'>
-        #
-(void)
-<b>setTab</b><span>(tab)</span>
-      </a>
-    </span>
-    <span class='bound note title'>Bound</span>
-    <span class='desc'>
-      Assign the current tag with the given tab 
+      Get the current tag. 
     </span>
   </li>
   <li>
@@ -135,15 +150,16 @@
   </li>
   <li>
     <span class='signature'>
-      <a href='#switch-dynamic'>
+      <a href='#setTab-dynamic'>
         #
 (void)
-<b>switch</b><span>(tab)</span>
+<b>setTab</b><span>(tab)</span>
       </a>
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Switch to the given tab 
+      Assign the current tag with the given tab, nothing happens if given tab is not in the initial tabs.
+
     </span>
   </li>
 </ul>
@@ -152,33 +168,32 @@
   <div class='method_details'>
     <p class='signature' id='constructor-dynamic'>
       #
-(TabSwitcher)
-<b>constructor</b><span>(tab = @DEFAULT_TAB)</span>
+(CycleSwitcher)
+<b>constructor</b><span>(tabs = @DEFAULT_TABS)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>The tab switcher constructor</p><pre><code>   no tab is given.
-</code></pre>
+  <p>The cycle switcher constructor</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
   <ul class='param'>
     <li>
-      <span class='name'>tab</span>
+      <span class='name'>tabs</span>
       <span class='type'>
         (
-          <tt>String</tt>
+          <tt>Array&lt;String&gt;</tt>
         )
       </span>
       &mdash;
-      <span class='desc'>The initial tab. The default value is &quot;none&quot; if </span>
+      <span class='desc'>The initial tabs. The first tab in the initial tabs would become the initial tab. </span>
     </li>
   </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
       <span class='type'></span>
-      <tt><a href='../class/TabSwitcher.html'>TabSwitcher</a></tt>
+      <tt><a href='../class/CycleSwitcher.html'>CycleSwitcher</a></tt>
     </li>
   </ul>
 </div>
@@ -186,6 +201,36 @@
 </div>
       <h2>Instance Method Details</h2>
       <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='next-dynamic'>
+      #
+(void)
+<b>next</b><span>()</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Move to the next tab, move to the first tab if
+the current tab is the last one.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='prev-dynamic'>
+      #
+(void)
+<b>prev</b><span>()</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Move to the previous tab, move to the last tab if
+the current tab is the first one.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
   <div class='method_details'>
     <p class='signature' id='reset-dynamic'>
       #
@@ -195,7 +240,7 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>Reset the current tab to the initial tab</p>
+  <p>Reset the current tab to the initial tab.</p>
 </div>
 <div class='tags'>
 </div>
@@ -209,7 +254,7 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>Get the current tag</p>
+  <p>Get the current tag.</p>
 </div>
 <div class='tags'>
   <h3>Returns:</h3>
@@ -221,33 +266,6 @@
       )
       &mdash;
       <span class='desc'>The current tab. </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='setTab-dynamic'>
-      #
-(void)
-<b>setTab</b><span>(tab)</span>
-      <span class='bound note'>Bound</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>Assign the current tag with the given tab</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>tab</span>
-      <span class='type'>
-        (
-          <tt>String</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>A tab to assign to the current tab. </span>
     </li>
   </ul>
 </div>
@@ -292,15 +310,16 @@ in the given tab array.</p>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='switch-dynamic'>
+    <p class='signature' id='setTab-dynamic'>
       #
 (void)
-<b>switch</b><span>(tab)</span>
+<b>setTab</b><span>(tab)</span>
       <span class='bound note'>Bound</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Switch to the given tab</p>
+  <p>Assign the current tag with the given tab,
+nothing happens if given tab is not in the initial tabs.</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -313,7 +332,7 @@ in the given tab array.</p>
         )
       </span>
       &mdash;
-      <span class='desc'>The tab you want to switch to. </span>
+      <span class='desc'>A tab to assign to the current tab. </span>
     </li>
   </ul>
 </div>
@@ -321,7 +340,7 @@ in the given tab array.</p>
 </div>
     </div>
     <div id='footer'>
-  October 21, 14 13:04:37 by
+  October 23, 14 12:58:53 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

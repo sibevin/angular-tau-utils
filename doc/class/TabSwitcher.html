@@ -19,60 +19,60 @@
       Index
     </a>
     &raquo;
-    <span class='title'>BoolSwitcher</span>
+    <span class='title'>TabSwitcher</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        BoolSwitcher
+        TabSwitcher
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>src&#47;tau-switcher&#47;services&#47;bool_switcher.js.coffee</td>
+          <td>src&#47;tau-switcher&#47;services&#47;tab_switcher.js.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>The bool switcher class</p>
+  <p>The tab switcher class</p>
 </div>
 <div class='tags'>
 </div>
       <h2>Variables Summary</h2>
       <dl class='constants'>
-  <dt id='DEFAULT_BOOL-variable'>
-    DEFAULT_BOOL
+  <dt id='DEFAULT_TAB-variable'>
+    DEFAULT_TAB
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>false</code></pre>
+    <pre><code class='coffeescript'>&quot;none&quot;</code></pre>
     <div class='docstring'>
-  <p>The default initial boolean</p>
+  <p>The default initial tab</p>
 </div>
 <div class='tags'>
 </div>
   </dd>
-  <dt id='_init_bool-variable'>
-    _init_bool
+  <dt id='_init_tab-variable'>
+    _init_tab
     =
   </dt>
   <dd>
     <pre><code class='coffeescript'></code></pre>
     <div class='docstring'>
-  <p>The initial boolean</p>
+  <p>The initial tab</p>
 </div>
 <div class='tags'>
 </div>
   </dd>
-  <dt id='_current_bool-variable'>
-    _current_bool
+  <dt id='_current_tab-variable'>
+    _current_tab
     =
   </dt>
   <dd>
     <pre><code class='coffeescript'></code></pre>
     <div class='docstring'>
-  <p>The current boolean</p>
+  <p>The current tab</p>
 </div>
 <div class='tags'>
 </div>
@@ -90,33 +90,47 @@
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Reset the current boolean to the initial boolean 
+      Reset the current tab to the initial tab 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#getBool-dynamic'>
+      <a href='#getTab-dynamic'>
         #
-(Boolean)
-<b>getBool</b><span>()</span>
+(String)
+<b>getTab</b><span>()</span>
       </a>
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Get the current boolean 
+      Get the current tag 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#setBool-dynamic'>
+      <a href='#setTab-dynamic'>
         #
 (void)
-<b>setBool</b><span>(bool)</span>
+<b>setTab</b><span>(tab)</span>
       </a>
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Set the current boolean 
+      Assign the current tag with the given tab 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isTab-dynamic'>
+        #
+(Boolean)
+<b>isTab</b><span>(tab)</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Check the current tab is equal to the given tab or in the given tab array.
+
     </span>
   </li>
   <li>
@@ -124,13 +138,12 @@
       <a href='#switch-dynamic'>
         #
 (void)
-<b>switch</b><span>()</span>
+<b>switch</b><span>(tab)</span>
       </a>
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Switch to the current boolean, apply &quot;not&quot; operation on the current boolean.
-
+      Switch to the given tab 
     </span>
   </li>
 </ul>
@@ -139,32 +152,32 @@
   <div class='method_details'>
     <p class='signature' id='constructor-dynamic'>
       #
-(BoolSwitcher)
-<b>constructor</b><span>(bool = @DEFAULT_BOOL)</span>
+(TabSwitcher)
+<b>constructor</b><span>(tab = @DEFAULT_TAB)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>The bool switcher constructor</p>
+  <p>The tab switcher constructor</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
   <ul class='param'>
     <li>
-      <span class='name'>bool</span>
+      <span class='name'>tab</span>
       <span class='type'>
         (
-          <tt>Boolean</tt>
+          <tt>String</tt>
         )
       </span>
       &mdash;
-      <span class='desc'>The initial boolean. </span>
+      <span class='desc'>The initial tab. The default value is &quot;none&quot; if no tab is given. </span>
     </li>
   </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
       <span class='type'></span>
-      <tt><a href='../class/BoolSwitcher.html'>BoolSwitcher</a></tt>
+      <tt><a href='../class/TabSwitcher.html'>TabSwitcher</a></tt>
     </li>
   </ul>
 </div>
@@ -181,23 +194,89 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>Reset the current boolean to the initial boolean</p>
+  <p>Reset the current tab to the initial tab</p>
 </div>
 <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='getBool-dynamic'>
+    <p class='signature' id='getTab-dynamic'>
       #
-(Boolean)
-<b>getBool</b><span>()</span>
+(String)
+<b>getTab</b><span>()</span>
       <span class='bound note'>Bound</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Get the current boolean</p>
+  <p>Get the current tag</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>String</tt>
+      )
+      &mdash;
+      <span class='desc'>The current tab. </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='setTab-dynamic'>
+      #
+(void)
+<b>setTab</b><span>(tab)</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Assign the current tag with the given tab</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>tab</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>A tab to assign to the current tab. </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isTab-dynamic'>
+      #
+(Boolean)
+<b>isTab</b><span>(tab)</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Check the current tab is equal to the given tab or
+in the given tab array.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>tab</span>
+      <span class='type'>
+        (
+          <tt>String, Array&lt;String&gt;</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>A tab or an array of tabs to check. </span>
+    </li>
+  </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
@@ -206,34 +285,7 @@
         <tt>Boolean</tt>
       )
       &mdash;
-      <span class='desc'>The current boolean. </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='setBool-dynamic'>
-      #
-(void)
-<b>setBool</b><span>(bool)</span>
-      <span class='bound note'>Bound</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>Set the current boolean</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>bool</span>
-      <span class='type'>
-        (
-          <tt>Boolean</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>A boolean to assign to the current boolean. </span>
+      <span class='desc'>true if matched, otherwise false. </span>
     </li>
   </ul>
 </div>
@@ -242,21 +294,33 @@
     <p class='signature' id='switch-dynamic'>
       #
 (void)
-<b>switch</b><span>()</span>
+<b>switch</b><span>(tab)</span>
       <span class='bound note'>Bound</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Switch to the current boolean,
-apply &quot;not&quot; operation on the current boolean.</p>
+  <p>Switch to the given tab</p>
 </div>
 <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>tab</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The tab you want to switch to. </span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
     </div>
     <div id='footer'>
-  October 21, 14 13:04:37 by
+  October 23, 14 12:58:53 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
