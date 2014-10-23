@@ -12,10 +12,10 @@ body
     padding: 12px
   .tb-content
 
-//h1
+h1
   +adjust-font-size-to($fs_xl)
 
-//h2, h3, h4, h5, h6
+h2, h3, h4, h5, h6
   +leader(0.5)
   +adjust-font-size-to($fs_l)
   &:before
@@ -24,6 +24,22 @@ body
 p
   +adjust-font-size-to($fs_def)
 
+pre
+  white-space: nowrap
+
 .badge-list
   a
     padding-right: 5px
+.link-btn
+  float: right
+  margin-left: 5px
+  a
+    font-size: 0.8em
+    display: inline-block
+    border: 1px solid #000
+    padding: 6px 8px
+    text-decoration: none
+    color: #000
+    &:hover
+      color: #fff
+      background: #000

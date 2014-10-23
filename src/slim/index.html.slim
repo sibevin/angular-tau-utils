@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
     link href="css/vendor/base-min.css" rel="stylesheet"
     link href="css/vendor/pure-nr-min.css" rel="stylesheet"
     link href="css/app.css" rel="stylesheet"
@@ -8,6 +9,14 @@ html
     script src="js/vendor/angular-tau-utils.min.js"
     script src="js/app.js"
   body
+    .link-btn
+      a href="https://sibevin.github.io/" About Me
+    .link-btn
+      a href="https://github.com/sibevin/angular-tau-utils/issues" Issue Report
+    .link-btn
+      a href="https://github.com/sibevin/angular-tau-utils" GitHub
+    .link-btn
+      a href="doc/index.html" Doc
     h1 Angular Tau Utilities
     p Utilitis for AngularJS app
     p.badge-list
@@ -75,17 +84,17 @@ html
       .badge js
       pre
         code
-          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);<br/><br/>
 
-            app.controller("MyCtrl", [
-              '$scope', '<span class="mk-blue">TabSwitcher</span>', function($scope, <span class="mk-blue">TabSwitcher</span>) {
-                <span class="mk-blue">$scope.ts = new TabSwitcher("home")</span>;
-              }
-            ]);
+            app.controller("MyCtrl", [<br/>
+            &nbsp;&nbsp;'$scope', '<span class="mk-blue">TabSwitcher</span>', function($scope, <span class="mk-blue">TabSwitcher</span>) {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="mk-blue">$scope.ts = new TabSwitcher("home")</span>;<br/>
+            &nbsp;&nbsp;}<br/>
+            ]);<br/>
       .badge html
       pre
         code
-          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: <span class="mk-blue">ts.isTab('home')</span>}&quot; ng-click=&quot;<span class="mk-blue">ts.switch('home')</span>&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab('product')}&quot; ng-click=&quot;ts.switch('product')&quot;&gt;Product&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab('contact')}&quot; ng-click=&quot;<span class="mk-blue">ts.setTab('contact')</span>&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>  &lt;div ng-show=&quot;<span class="mk-blue">ts.isTab('home')</span>&quot;&gt;&lt;h1&gt;Home&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ts.isTab('product')&quot;&gt;&lt;h1&gt;Product&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ts.isTab('contact')&quot;&gt;&lt;h1&gt;Contact&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>&nbsp;&nbsp;&lt;ul&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: <span class="mk-blue">ts.isTab('home')</span>}&quot; ng-click=&quot;<span class="mk-blue">ts.switch('home')</span>&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab('product')}&quot; ng-click=&quot;ts.switch('product')&quot;&gt;Product&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{active: ts.isTab('contact')}&quot; ng-click=&quot;<span class="mk-blue">ts.setTab('contact')</span>&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;<span class="mk-blue">ts.isTab('home')</span>&quot;&gt;&lt;h1&gt;Home&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ts.isTab('product')&quot;&gt;&lt;h1&gt;Product&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ts.isTab('contact')&quot;&gt;&lt;h1&gt;Contact&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
     .block-d
       | Bool Switcher (
       code
@@ -105,17 +114,17 @@ html
       .badge js
       pre
         code
-          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);<br/><br/>
 
-            app.controller("MyCtrl", [
-              '$scope', '<span class="mk-blue">BoolSwitcher</span>', function($scope, <span class="mk-blue">BoolSwitcher</span>) {
-                <span class="mk-blue">$scope.bs = new BoolSwitcher()</span>;
-              }
+            app.controller("MyCtrl", [<br/>
+            &nbsp;&nbsp;'$scope', '<span class="mk-blue">BoolSwitcher</span>', function($scope, <span class="mk-blue">BoolSwitcher</span>) {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="mk-blue">$scope.bs = new BoolSwitcher()</span>;<br/>
+            &nbsp;&nbsp;}<br/>
             ]);
       .badge html
       pre
         code
-          | &lt;div class=&quot;switch-btn&quot; ng-class=&quot;{on: <span class="mk-blue">bs.getBool()</span>}&quot; ng-click=&quot;<span class="mk-blue">bs.switch()</span>&quot;&gt;<br/>  &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+          | &lt;div class=&quot;switch-btn&quot; ng-class=&quot;{on: <span class="mk-blue">bs.getBool()</span>}&quot; ng-click=&quot;<span class="mk-blue">bs.switch()</span>&quot;&gt;<br/>&nbsp;&nbsp;&lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;<br/>&lt;/div&gt;
     .block-d
       | Cycle Switcher (
       code
@@ -162,17 +171,17 @@ html
       .badge js
       pre
         code
-          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);<br/><br/>
 
-            app.controller("MyCtrl", [
-              '$scope', '<span class="mk-blue">CycleSwitcher</span>', function($scope, <span class="mk-blue">CycleSwitcher</span>) {
-                <span class="mk-blue">$scope.cs = new CycleSwitcher(["case1", "case2", "case3"])</span>;
-              }
+            app.controller("MyCtrl", [<br/>
+            &nbsp;&nbsp;'$scope', '<span class="mk-blue">CycleSwitcher</span>', function($scope, <span class="mk-blue">CycleSwitcher</span>) {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="mk-blue">$scope.cs = new CycleSwitcher(["case1", "case2", "case3"])</span>;<br/>
+            &nbsp;&nbsp;}<br/>
             ]);
       .badge html
       pre
         code
-          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.reset()</span>&quot;&gt;Back to first&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.setTab('case2')</span>&quot;&gt;Go to case2&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>  &lt;div ng-show=&quot;<span class="mk-blue">cs.isTab('case1')</span>&quot;&gt;&lt;h1&gt;Case1&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;cs.isTab('case2')&quot;&gt;&lt;h1&gt;Case2&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;cs.isTab('case3')&quot;&gt;&lt;h1&gt;Case3&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>&nbsp;&nbsp;&lt;ul&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.reset()</span>&quot;&gt;Back to first&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">cs.setTab('case2')</span>&quot;&gt;Go to case2&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;<span class="mk-blue">cs.isTab('case1')</span>&quot;&gt;&lt;h1&gt;Case1&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;cs.isTab('case2')&quot;&gt;&lt;h1&gt;Case2&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;cs.isTab('case3')&quot;&gt;&lt;h1&gt;Case3&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
     .block-d
       | Pipe Switcher (
       code
@@ -223,17 +232,17 @@ html
       .badge js
       pre
         code
-          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
+          | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);<br/><br/>
 
-            app.controller("MyCtrl", [
-              '$scope', '<span class="mk-blue">PipeSwitcher</span>', function($scope, <span class="mk-blue">PipeSwitcher</span>) {
-                <span class="mk-blue">$scope.ps = new PipeSwitcher(["step1", "step2", "step3", "step4"], "step2")</span>;
-              }
+            app.controller("MyCtrl", [<br/>
+            &nbsp;&nbsp;'$scope', '<span class="mk-blue">PipeSwitcher</span>', function($scope, <span class="mk-blue">PipeSwitcher</span>) {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="mk-blue">$scope.ps = new PipeSwitcher(["step1", "step2", "step3", "step4"], "step2")</span>;<br/>
+            &nbsp;&nbsp;}<br/>
             ]);
       .badge html
       pre
         code
-          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isFirst()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isLast()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.reset()</span>&quot;&gt;Back to step2&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.setTab('step3')</span>&quot;&gt;Go to step3&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>  &lt;div ng-show=&quot;<span class="mk-blue">ps.isTab('step1')</span>&quot;&gt;&lt;h1&gt;Step1&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ps.isTab('step2')&quot;&gt;&lt;h1&gt;Step2&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ps.isTab('step3')&quot;&gt;&lt;h1&gt;Step3&lt;/h1&gt;&lt;/div&gt;<br/>  &lt;div ng-show=&quot;ps.isTab('step4')&quot;&gt;&lt;h1&gt;Step4&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+          | &lt;div class=&quot;tab-menu&quot;&gt;<br/>&nbsp;&nbsp;&lt;ul&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isFirst()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isLast()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.reset()</span>&quot;&gt;Back to step2&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.setTab('step3')</span>&quot;&gt;Go to step3&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;<span class="mk-blue">ps.isTab('step1')</span>&quot;&gt;&lt;h1&gt;Step1&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ps.isTab('step2')&quot;&gt;&lt;h1&gt;Step2&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ps.isTab('step3')&quot;&gt;&lt;h1&gt;Step3&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ps.isTab('step4')&quot;&gt;&lt;h1&gt;Step4&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
     h2 Another ng-switch ?
     p
       | Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.
