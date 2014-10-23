@@ -22,7 +22,7 @@ angular.module('myApp', ['angular-tau-utils'])
 
 ## Tau Modules
 
-`angular-tau-utils` are separated into different tau modules, and you can use them individually. For example, if only `tau-switcher` is used, you can just add `tau-switcher` in your app dependence.
+`angular-tau-utils` is separated into different tau modules, and you can use them individually. For example, if only `tau-switcher` is used, you can just add `tau-switcher` in your app dependence.
 
 ```js
 angular.module('myApp', ['tau-switcher'])
@@ -34,62 +34,34 @@ Here is the tua module list:
 
 ### tau-switcher
 
-`tau-switcher` module provides three services: `TabSwitcher`, `BoolSwitcher` and `CycleSwitcher`.
+`tau-switcher` module provides several services: `TabSwitcher`, `BoolSwitcher`, `CycleSwitcher` and `PipeSwitcher`.
 
 #### TabSwitcher
 
 `TabSwitcher` is a service to handle the tab-switching. A tab can be any kinds of object, but `string` should be enough to handle most of usage cases.
 
 ```js
-ts = new TabSwitcher(); // if no tab is given, the default init tab is "none"
+var app = angular.module('MyApp', ["tau-switcher"]);
 
-ts.isTab("none"); // use isTab() to test the current tab and given tab are matched or not.
-// true
-
-ts.switch("home"); // use switch() to switch tab to the given tab
-ts.isTab("home");
-// true
-ts.isTab("none");
-// false
-
-ts.reset(); // use reset() to switch tab to the init tab
-ts.isTab("home");
-// false
-ts.isTab("none");
-// true
-
-ts.switch("product");
-ts.switch("product"); // if switch to current tab, the current tab would be reset to init tab
-ts.isTab("product");
-// false
-ts.isTab("none");
-// true
-
-ts.switch("contact");
-ts.isTab("contact");
-// true
-ts.getTab(); // use getTab() to get the current tab
-// "contact"
-
-ts.setTab("home"); // use setTab() to set the current tab with the given tab
-ts.isTab("home");
-// true
+app.controller("MyCtrl", [
+  '$scope', 'TabSwitcher', function($scope, TabSwitcher) {
+    $scope.ts = new TabSwitcher("home");
+  }
+]);
 ```
 
-`TabSwitcher` is for handling the tab switching between serial of tab bottoms.
-
 ```html
-<a ng-click="ts.switch('home')"> Home </a>
-<a ng-click="ts.switch('product')"> Product </a>
-<a ng-click="ts.switch('contact')"> Contact Me </a>
-<div ng-show="ts.isTab('home')">
-  Home
+<div class="tab-menu">
+  <ul>
+    <li><a herf="" ng-class="{active: ts.isTab('home')}" ng-click="ts.switch('home')">Home</a></li>
+    <li><a herf="" ng-class="{active: ts.isTab('product')}" ng-click="ts.switch('product')">Product</a></li>
+    <li><a herf="" ng-class="{active: ts.isTab('contact')}" ng-click="ts.setTab('contact')">Contact</a></li>
+  </ul>
 </div>
-<div ng-show="ts.isTab('product')">
-  Product
-</div>
-<div ng-show="ts.isTab('contact')">
-  Contact Me
+<div class="tab-page">
+  <div ng-show="ts.isTab('home')"><h1>Home</h1></div>
+  <div ng-show="ts.isTab('product')"><h1>Product</h1></div>
+  <div ng-show="ts.isTab('contact')"><h1>Contact</h1></div>
 </div>
 ```
 
@@ -98,146 +70,81 @@ ts.isTab("home");
 `BoolSwitcher` is a simplified version of `TabSwitcher`, only for handling boolean values.
 
 ```js
-bs = new BoolSwitcher(); // if no tab is given, the default init value is false
+var app = angular.module('MyApp', ["tau-switcher"]);
 
-bs.getBool(); // use getBool() to get the current boolean value
-// false
-
-bs.switch(); // use switch() to switch the boolean value
-bs.getBool();
-// true
-
-bs.setBool(false); // use setBool() to set the current boolean value with the given value
-bs.getBool();
-// false
-
-bs.reset(); // use reset() to set the current boolean value to the init value
-bs.getBool();
-// false
+app.controller("MyCtrl", [
+  '$scope', 'BoolSwitcher', function($scope, BoolSwitcher) {
+    $scope.bs = new BoolSwitcher();
+  }
+]);
 ```
 
-`BoolSwitcher` is very useful to create a switching buttom.
-
 ```html
-<a ng-click="bs.switch()"> Show/Hide Information </a>
-<div ng-show="bs.getBool()">
-  Show some information
+<div class="switch-btn" ng-class="{on: bs.getBool()}" ng-click="bs.switch()">
+  <div class="bar"></div>
 </div>
 ```
 
 #### CycleSwitcher
 
-`CycleSwitcher` is a service to handle a serial of ordered tabs, the difference between `TabSwitcher` and `CycleSwitcher` is `CycleSwitcher` must define an array of tabs when creating a `CycleSwitcher` object, and the current tab in `CycleSwitcher` only be switched between these tabs.
+`CycleSwitcher` is a service to handle a serial of ordered tabs, the difference between `TabSwitcher` and `CycleSwitcher` is `CycleSwitcher` must assign a tab array when creating a `CycleSwitcher` object, and the current tab in `CycleSwitcher` is switched between these tabs only.
 
 ```js
-tabs = ["case1", "case2", "case3"];
-cs = new CycleSwitcher(tabs); // create a cycle switcher object with a given tab array
-cs.isTab("case1"); // the default init tab is the first tab in the array
-// true
+var app = angular.module('MyApp', ["tau-switcher"]);
 
-cs.isTab("case2"); // use isTab() to test the current tab and given tab are matched or not
-// false
-
-cs.getTab(); // use getTab() to get the current tab
-// "case1"
-
-cs.next(); // use next() to switch tab to the next tab
-cs.getTab();
-// "case2"
-cs.next();
-cs.getTab();
-// "case3"
-cs.next(); // if the current tab is the last tab, call next() would back to the first tab
-cs.getTab();
-// "case1"
-
-cs.prev(); // use prev() to switch tab to the previous tab, if the current tab is the first tab, call prev() would go to the last tab
-cs.getTab();
-// "case3"
-
-cs.reset(); // use reset() to switch tab to the init tab
-cs.isTab("case1");
-// true
-
-cs.setTab("case2"); // use setTab() to set the current tab
-cs.isTab("case2");
-// true
+app.controller("MyCtrl", [
+  '$scope', 'CycleSwitcher', function($scope, CycleSwitcher) {
+    $scope.cs = new CycleSwitcher(["case1", "case2", "case3"]);
+  }
+]);
 ```
 
 `CycleSwitcher` is for handling cycle-switching tabs.
 
 ```html
-<a ng-click="cs.next()"> Next Case </a>
-<div ng-show="cs.isTab('case1')">
-  Case 1
+<div class="tab-menu">
+  <ul>
+    <li><a herf="" ng-click="cs.prev()">Previous</a></li>
+    <li><a herf="" ng-click="cs.next()">Next</a></li>
+    <li><a herf="" ng-click="cs.reset()">Back to first</a></li>
+    <li><a herf="" ng-click="cs.setTab('case2')">Go to case2</a></li>
+  </ul>
 </div>
-<div ng-show="cs.isTab('case2')">
-  Case 2
-</div>
-<div ng-show="cs.isTab('case3')">
-  Case 3
+<div class="tab-page">
+  <div ng-show="cs.isTab('case1')"><h1>Case1</h1></div>
+  <div ng-show="cs.isTab('case2')"><h1>Case2</h1></div>
+  <div ng-show="cs.isTab('case3')"><h1>Case3</h1></div>
 </div>
 ```
 
 #### PipeSwitcher
 
-`PipeSwitcher` is a service to handle a serial of ordered tabs, the difference between `PipeSwitcher` and `CycleSwitcher` is that `PipeSwitcher` is not cycled, i.e., when calling `next()` at the last tab or `prev()` at the first tab, `PipeSwitcher` would keep the current tab not changed. Besides, `PipeSwitcher` can assign the initial tab.
+`PipeSwitcher` is a service to handle a serial of ordered tabs, the difference between `PipeSwitcher` and `CycleSwitcher` is that `PipeSwitcher` is not cycled, i.e., when calling `next()` at the last tab or `prev()` at the first tab, nothing happened. Besides, `PipeSwitcher` can assign the initial tab, i.e., the initial tab can be different to the first tab.
 
 ```js
-tabs = ["case1", "case2", "case3"];
-ps = new PipeSwitcher(tabs, "case2"); // create a pipe switcher object with a given tab array and the initial tab, if no initial tab is given, the first tab would be the initial tab
-ps.isTab("case2"); // the default init tab is the first tab in the array
-// true
+var app = angular.module('MyApp', ["tau-switcher"]);
 
-ps.isTab("case1"); // use isTab() to test the current tab and given tab are matched or not
-// false
-
-ps.getTab(); // use getTab() to get the current tab
-// "case2"
-
-ps.next(); // use next() to switch tab to the next tab
-ps.getTab();
-// "case3"
-ps.next(); // if the current tab is the last tab, call next() would do nothing
-ps.getTab();
-// "case3"
-ps.isLast(); // use isLast() to check the current tab is the last tab or not
-// true
-ps.isFirst(); // use isFirst() to check the current tab is the first tab or not
-// false
-
-ps.prev(); // use prev() to switch tab to the previous tab
-ps.getTab();
-// "case2"
-ps.prev();
-ps.getTab();
-// "case1"
-ps.prev(); // if the current tab is the first tab, call prev() would do nothing
-ps.getTab();
-// "case1"
-
-ps.reset(); // use reset() to switch tab to the init tab
-ps.isTab("case2");
-// true
-
-ps.setTab("case1"); // use setTab() to set the current tab
-ps.isTab("case1");
-// true
+app.controller("MyCtrl", [
+  '$scope', 'PipeSwitcher', function($scope, PipeSwitcher) {
+    $scope.ps = new PipeSwitcher(["step1", "step2", "step3", "step4"], "step2");
+  }
+]);
 ```
 
-`PipeSwitcher` is for handling switching tabs.
-
 ```html
-<a ng-click="ps.prev()" ng-hide="ps.isFirst()"> Previse Case </a>
-<a ng-click="ps.next()" ng-hide="ps.isLast()"> Next Case </a>
-<div ng-show="ps.isTab('case1')">
-  Case 1
+<div class="tab-menu">
+  <ul>
+    <li><a herf="" ng-class="{disable: ps.isFirst()}" ng-click="ps.prev()">Previous</a></li>
+    <li><a herf="" ng-class="{disable: ps.isLast()}" ng-click="ps.next()">Next</a></li>
+    <li><a herf="" ng-click="ps.reset()">Back to step2</a></li>
+    <li><a herf="" ng-click="ps.setTab('step3')">Go to step3</a></li>
+  </ul>
 </div>
-<div ng-show="ps.isTab('case2')">
-  Case 2
-</div>
-<div ng-show="ps.isTab('case3')">
-  Case 3
+<div class="tab-page">
+  <div ng-show="ps.isTab('step1')"><h1>Step1</h1></div>
+  <div ng-show="ps.isTab('step2')"><h1>Step2</h1></div>
+  <div ng-show="ps.isTab('step3')"><h1>Step3</h1></div>
+  <div ng-show="ps.isTab('step4')"><h1>Step4</h1></div>
 </div>
 ```
 
