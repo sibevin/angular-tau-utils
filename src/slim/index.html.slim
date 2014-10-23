@@ -21,7 +21,7 @@ html
       code
         | angular.module('myApp', ['angular-tau-utils'])
     h2 Tau Modules
-    p angular-tau-utils are separated into different tau modules, and you can use them individually. For example, if only tau-switcher is used, you can just add tau-switcher in your app dependence.
+    p angular-tau-utils is separated into different tau modules, and you can use them individually. For example, if only tau-switcher is used, you can just add tau-switcher in your app dependence.
     pre.block-bd
       code
         | angular.module('myApp', ['tau-switcher'])
@@ -78,7 +78,7 @@ html
           | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
 
             app.controller("MyCtrl", [
-              '$scope', 'TabSwitcher', function($scope, TabSwitcher) {
+              '$scope', '<span class="mk-blue">TabSwitcher</span>', function($scope, <span class="mk-blue">TabSwitcher</span>) {
                 <span class="mk-blue">$scope.ts = new TabSwitcher("home")</span>;
               }
             ]);
@@ -108,7 +108,7 @@ html
           | var app = angular.module('MyApp', ["<span class="mk-blue">tau-switcher</span>"]);
 
             app.controller("MyCtrl", [
-              '$scope', 'BoolSwitcher', function($scope, TabSwitcher) {
+              '$scope', '<span class="mk-blue">BoolSwitcher</span>', function($scope, <span class="mk-blue">BoolSwitcher</span>) {
                 <span class="mk-blue">$scope.bs = new BoolSwitcher()</span>;
               }
             ]);
@@ -180,7 +180,7 @@ html
       | )
     .block
       p
-        | PipeSwitcher is a service to handle a serial of ordered tabs, the difference between PipeSwitcher and CycleSwitcher is that PipeSwitcher is not cycled, i.e., when calling next() at the last tab or prev() at the first tab, PipeSwitcher would keep the current tab not changed. Besides, PipeSwitcher can assign the initial tab, i.e., the initial tab can be different to the first tab.
+        | PipeSwitcher is a service to handle a serial of ordered tabs, the difference between PipeSwitcher and CycleSwitcher is that PipeSwitcher is not cycled, i.e., when calling next() at the last tab or prev() at the first tab, nothing happened. Besides, PipeSwitcher can assign the initial tab, i.e., the initial tab can be different to the first tab.
     .block
       .ex ng-controller="PipeSwitcherExCtrl"
         .ex-tab-menu
