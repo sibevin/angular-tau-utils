@@ -12,6 +12,11 @@
 
 Utilitis for AngularJS app
 
+* Demo: http://sibevin.github.io/angular-tau-utils/
+* Doc: http://sibevin.github.io/angular-tau-utils/doc/index.html
+* Github: https://github.com/sibevin/angular-tau-utils
+* Issue Report: https://github.com/sibevin/angular-tau-utils/issues
+
 ## Usage
 
 Include `tau-utils` in your app dependence, then all tau modules are reday to use.
