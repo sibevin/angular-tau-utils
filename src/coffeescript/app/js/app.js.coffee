@@ -1,4 +1,4 @@
-page_app = angular.module('pageApp', ["angular-tau-utils"])
+page_app = angular.module('pageApp', ["tau-utils"])
 
 page_app.controller "TabSwitcherExCtrl", [
   '$scope', 'TabSwitcher'
@@ -26,6 +26,15 @@ page_app.controller "PipeSwitcherExCtrl", [
   ($scope,   PipeSwitcher) ->
 
     $scope.ps = new PipeSwitcher(["step1", "step2", "step3", "step4"], "step2")
+]
+
+page_app.controller "CheckboxModelExCtrl", [
+  '$scope', 'CheckboxModel'
+  ($scope,   CheckboxModel) ->
+
+    $scope.roles = ["user", "manager", "admin"]
+    $scope.roles_m = {}
+    $scope.cm = new CheckboxModel({ cands:$scope.roles, model:$scope.roles_m })
 ]
 
 angular.element(document).ready ->

@@ -35,6 +35,12 @@ html
       code
         | angular.module('myApp', ['tau-switcher'])
     p
+      | Here is the tua module list:
+    ul
+      li
+        code tau-switcher
+      li
+        code tau-checkbox-model
     .block-dd
       | Tau Switcher (
       code
@@ -80,6 +86,10 @@ html
         p
           code
             | ts.getTab() = {{ts.getTab()}}
+            br
+            | ts.isTab('home') = {{ts.isTab('home')}}
+            br
+            | ts.isTab(['home', 'product']) = {{ts.isTab(['home', 'product'])}}
     .block
       .badge js
       pre
@@ -155,7 +165,7 @@ html
             p
               | The initial tab is the first tab, calling reset() would go back here.
             p
-              | If you click "Previous", it would go to the last tab.
+              | If you click "Previous", it goes to the last tab.
           div ng-show="cs.isTab('case2')"
             h1 Case2
           div ng-show="cs.isTab('case3')"
@@ -163,10 +173,14 @@ html
             p
               | Here is the last tab
             p
-              | If you click "Next", it would go to the first tab.
+              | If you click "Next", it goes to the first tab.
         p
           code
             | cs.getTab() = {{cs.getTab()}}
+            br
+            | cs.isTab('case1') = {{cs.isTab('case1')}}
+            br
+            | cs.isTab(['case1', 'case2']) = {{cs.isTab(['case1', 'case2'])}}
     .block
       .badge js
       pre
@@ -228,6 +242,14 @@ html
         p
           code
             | ps.getTab() = {{ps.getTab()}}
+            br
+            | ps.isFirst() = {{ps.isFirst()}}
+            br
+            | ps.isLast() = {{ps.isLast()}}
+            br
+            | ps.isTab('step2') = {{ps.isTab('step2')}}
+            br
+            | ps.isTab(['step2', 'step3']) = {{ps.isTab(['step2', 'step3'])}}
     .block
       .badge js
       pre
@@ -243,11 +265,72 @@ html
       pre
         code
           | &lt;div class=&quot;tab-menu&quot;&gt;<br/>&nbsp;&nbsp;&lt;ul&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isFirst()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.prev()</span>&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: <span class="mk-blue">ps.isLast()</span>}&quot; ng-click=&quot;<span class="mk-blue">ps.next()</span>&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.reset()</span>&quot;&gt;Back to step2&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;<span class="mk-blue">ps.setTab('step3')</span>&quot;&gt;Go to step3&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;/ul&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;tab-page&quot;&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;<span class="mk-blue">ps.isTab('step1')</span>&quot;&gt;&lt;h1&gt;Step1&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ps.isTab('step2')&quot;&gt;&lt;h1&gt;Step2&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ps.isTab('step3')&quot;&gt;&lt;h1&gt;Step3&lt;/h1&gt;&lt;/div&gt;<br/>&nbsp;&nbsp;&lt;div ng-show=&quot;ps.isTab('step4')&quot;&gt;&lt;h1&gt;Step4&lt;/h1&gt;&lt;/div&gt;<br/>&lt;/div&gt;
-    h2 Another ng-switch ?
-    p
-      | Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.
+    .block
+      h2 Another ng-switch ?
+      p
+        | Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.
+    .block-dd
+      | Tau Checkbox Model(
+      code
+        | module: tau-checkbox-model
+      | )
+    .block-bdd
+      p
+        | tau-checkbox-model module provides the CheckboxModel service.
+    .block-d
+      | Checkbox Model(
+      code
+        | service: CheckboxModel
+      | )
+    .block
+      p
+        | CheckboxModel is a service to handle the model used in a group of checkboxes.
+    .block
+      .ex ng-controller="CheckboxModelExCtrl"
+        .ex-tab-menu
+          ul
+            li
+              a herf="" ng-click="cm.selectAll()"
+                | Select All
+            li
+              a herf="" ng-click="cm.selectAll(false)"
+                | Unselect All
+            li
+              a herf="" ng-class="{disable: cm.isSelected('user')}" ng-click="cm.select('user')"
+                | Select "user"
+            li
+              a herf="" ng-class="{disable: !cm.isSelected('user')}" ng-click="cm.select('user', false)"
+                | Unselect "user"
+        .ex-tab-page
+          .ex-cb ng-repeat="role in roles"
+            input type="checkbox" name="role" ng-model="roles_m[role]"
+            | {{role}}
+          .ex-cb ng-show="cm.isSelected()"
+            | Something is selected.
+          .ex-cb ng-hide="cm.isSelected()"
+            | Nothing is selected.
+        p
+          code
+            | roles_m = {{roles_m}}
+            br
+            | cm.list() = {{cm.list()}}
+            br
+            | cm.isSelected('user') = {{cm.isSelected('user')}}
+            br
+            | cm.isSelected() = {{cm.isSelected()}}
+      .badge js
+      pre
+        code
+          | var&nbsp;app&nbsp;=&nbsp;angular.module('MyApp',&nbsp;['<span class="mk-blue">tau-checkbox-model</span>']);<br/><br/>app.controller('MyCtrl',&nbsp;[<br/>&nbsp;&nbsp;'$scope',&nbsp;'<span class="mk-blue">CheckboxModel</span>',&nbsp;function($scope,&nbsp;<span class="mk-blue">CheckboxModel</span>)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;$scope.roles&nbsp;=&nbsp;['user',&nbsp;'manager',&nbsp;'admin'];<br/>&nbsp;&nbsp;&nbsp;&nbsp;$scope.roles_m&nbsp;=&nbsp;{};<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="mk-blue">$scope.cm&nbsp;=&nbsp;new&nbsp;CheckboxModel({<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cands:&nbsp;$scope.roles,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model:&nbsp;$scope.roles_m<br/>&nbsp;&nbsp;&nbsp;&nbsp;});</span><br/>&nbsp;&nbsp;}<br/>]);
+      .badge html
+      pre
+        code
+          | &lt;ul&gt;<br/>&nbsp;&nbsp;&lt;li&gt;&lt;a&nbsp;herf=&quot;&quot;&nbsp;ng-click=&quot;<span class="mk-blue">cm.selectAll()</span>&quot;&gt;Select&nbsp;All&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;li&gt;&lt;a&nbsp;herf=&quot;&quot;&nbsp;ng-click=&quot;<span class="mk-blue">cm.selectAll(false)</span>&quot;&gt;Unselect&nbsp;All&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;li&gt;&lt;a&nbsp;herf=&quot;&quot;&nbsp;ng-class=&quot;{disable:&nbsp;<span class="mk-blue">cm.isSelected('user')</span>}&quot;&nbsp;ng-click=&quot;<span class="mk-blue">cm.select('user')</span>&quot;&gt;Select&nbsp;&quot;user&quot;&lt;/a&gt;&lt;/li&gt;<br/>&nbsp;&nbsp;&lt;li&gt;&lt;a&nbsp;herf=&quot;&quot;&nbsp;ng-class=&quot;{disable:&nbsp;!cm.isSelected('user')}&quot;&nbsp;ng-click=&quot;<span class="mk-blue">cm.select('user',&nbsp;false)</span>&quot;&gt;Unselect&nbsp;&quot;user&quot;&lt;/a&gt;&lt;/li&gt;<br/>&lt;/ul&gt;<br/>&lt;div&nbsp;ng-repeat=&quot;role&nbsp;in&nbsp;roles&quot;&gt;<br/>&nbsp;&nbsp;&lt;input&nbsp;name=&quot;role&quot;&nbsp;<span class="mk-blue">ng-model=&quot;roles_m[role]</span>&quot;&nbsp;type=&quot;checkbox&quot;&nbsp;/&gt;&nbsp;{{&nbsp;role&nbsp;}}<br/>&lt;/div&gt;<br/>
+    .block
+      h2 Why not use a directive ?
+      p
+        | Using a directive means the feature is binding with a DOM, it is not flexible and limits the usage. CheckboxModel can be applied to any kinds of checkboxes as long as they are using ng-model.
     h2 Development
-
     p
       | Clone the source from the repo
     pre.block-bd
