@@ -125,7 +125,7 @@ module.exports = function(grunt) {
   grunt.registerTask('cov', ['coffeelint', 'coffee', 'concat', 'karma:cov']);
   grunt.registerTask('clean_all', ['clean:all']);
   grunt.registerTask('clean_dev', ['clean:all', 'clean:pkg']);
-  grunt.registerTask('cov_all', ['coffee', 'concat', 'cov', 'coveralls:run']);
+  grunt.registerTask('cov_all', ['cov', 'coveralls:run']);
   grunt.registerTask('doc', ['coffeelint', 'coffee', 'concat', 'codo']);
 
 };
