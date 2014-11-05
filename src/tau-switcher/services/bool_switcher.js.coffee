@@ -30,6 +30,7 @@ angular.module("tau-switcher").factory "BoolSwitcher", ->
 
     # Switch to the current boolean,
     # apply "not" operation on the current boolean.
+    #
     switch: =>
       @_current_bool = !@_current_bool
 

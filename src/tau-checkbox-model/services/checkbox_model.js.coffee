@@ -9,8 +9,8 @@ angular.module("tau-checkbox-model").factory "CheckboxModel", ->
     # The checkbox model constructor
     #
     # @param cm_data [Object] An object contains "cands" and "model" attributes,
-    #        which "cands" is an array of initial candidates and "model" is
-    #        the checkbox model.
+    #   which "cands" is an array of initial candidates and "model" is the
+    #   checkbox model.
     # @return [CheckboxModel]
     #
     constructor: (cm_data) ->
@@ -45,7 +45,9 @@ angular.module("tau-checkbox-model").factory "CheckboxModel", ->
     # Check the given candidate is selected or not
     #
     # @param cand [String] The candidate to check. If no candidate is given, it
-    #        return true if something is selected.
+    #   return true if something is selected.
+    # @return [Boolean] true if the given candidate is selected, otherwise
+    #   false.
     #
     isSelected: (cand = null) =>
       if cand == null
