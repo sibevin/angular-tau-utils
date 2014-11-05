@@ -140,6 +140,14 @@ pre {
   background: #eee;
   float: right;
 }
+/* line 53, ../../src/sass/partials/_ex.sass */
+.ex .ex-cb {
+  padding: 5px;
+}
+/* line 55, ../../src/sass/partials/_ex.sass */
+.ex .ex-cb input {
+  margin-right: 5px;
+}
 
 /* line 8, ../../src/sass/partials/_block.sass */
 .block {
