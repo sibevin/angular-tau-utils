@@ -26,6 +26,8 @@ angular.module("tau-checkbox-model").factory "CheckboxModel", ->
 
     # List the selected candidates
     #
+    # @return [Array<String>] The selected candidates.
+    #
     list: =>
       results = []
       for cand in @_cm_data.cands
