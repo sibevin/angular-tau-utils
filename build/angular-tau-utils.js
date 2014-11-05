@@ -1,8 +1,8 @@
-/*! angular-tau-utils - v1.1.0 - 2014-10-21
+/*! angular-tau-utils - v2.0.0 - 2014-11-05
 * https://github.com/sibevin/angular-tau-utils/
 * Copyright (c) 2014 Sibevin Wang; Licensed MIT */
 (function() {
-  angular.module("angular-tau-utils", ["tau-switcher"]);
+  angular.module("tau-utils", ["tau-switcher", "tau-checkbox-model"]);
 
 }).call(this);
 
@@ -285,6 +285,101 @@
 
     })();
     return TabSwitcher;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module("tau-checkbox-model", []);
+
+}).call(this);
+
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  angular.module("tau-checkbox-model").factory("CheckboxModel", function() {
+    var CheckboxModel;
+    CheckboxModel = (function() {
+      CheckboxModel.prototype._cm_data = {
+        cands: [],
+        model: {}
+      };
+
+      function CheckboxModel(cm_data) {
+        this.isSelected = __bind(this.isSelected, this);
+        this.select = __bind(this.select, this);
+        this.list = __bind(this.list, this);
+        this.selectAll = __bind(this.selectAll, this);
+        this._cm_data = cm_data;
+      }
+
+      CheckboxModel.prototype.selectAll = function(selected) {
+        var cand, _i, _len, _ref, _results;
+        if (selected == null) {
+          selected = true;
+        }
+        _ref = this._cm_data.cands;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          cand = _ref[_i];
+          _results.push(this._cm_data.model[cand] = selected ? true : false);
+        }
+        return _results;
+      };
+
+      CheckboxModel.prototype.list = function() {
+        var cand, results, _i, _len, _ref;
+        results = [];
+        _ref = this._cm_data.cands;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          cand = _ref[_i];
+          if (this._cm_data.model[cand]) {
+            results.push(cand);
+          }
+        }
+        return results;
+      };
+
+      CheckboxModel.prototype.select = function(cand, selected) {
+        if (selected == null) {
+          selected = true;
+        }
+        if (__indexOf.call(this._cm_data.cands, cand) >= 0) {
+          return this._cm_data.model[cand] = selected ? true : false;
+        }
+      };
+
+      CheckboxModel.prototype.isSelected = function(cand) {
+        var _i, _len, _ref;
+        if (cand == null) {
+          cand = null;
+        }
+        if (cand === null) {
+          _ref = this._cm_data.cands;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            cand = _ref[_i];
+            if (this._cm_data.model[cand]) {
+              return true;
+            }
+          }
+          return false;
+        } else {
+          if (__indexOf.call(this._cm_data.cands, cand) < 0) {
+            return false;
+          }
+          if (this._cm_data.model[cand]) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      };
+
+      return CheckboxModel;
+
+    })();
+    return CheckboxModel;
   });
 
 }).call(this);
