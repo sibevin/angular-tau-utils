@@ -53,7 +53,7 @@ angular.module("tau-switcher").factory "TabSwitcher", ->
     # The tab switcher constructor
     #
     # @param tab [String] The initial tab. The default value is "none" if
-    #        no tab is given.
+    #   no tab is given.
     # @return [TabSwitcher]
     #
     constructor: (tab = @DEFAULT_TAB) ->

@@ -48,7 +48,7 @@ angular.module("tau-switcher").factory "PipeSwitcher", ->
     # Check the current tab is the first tab or not.
     #
     # @return [Boolean] true if the current tab is the first one,
-    #         otherwise false.
+    #   otherwise false.
     #
     isFirst: =>
       @_current_index - 1 < 0
@@ -56,7 +56,7 @@ angular.module("tau-switcher").factory "PipeSwitcher", ->
     # Check the current tab is the last tab or not.
     #
     # @return [Boolean] true if the current tab is the last one,
-    #         otherwise false.
+    #   otherwise false.
     #
     isLast: =>
       @_current_index + 1 >= @_tabs.length
@@ -72,8 +72,8 @@ angular.module("tau-switcher").factory "PipeSwitcher", ->
     # The pipe switcher constructor
     #
     # @param tab [Array<String>] The initial tabs. The first tab
-    #        in the initial tabs would become the initial tab if
-    #        no init_tab is given.
+    #   in the initial tabs would become the initial tab if
+    #   no init_tab is given.
     # @param init_tab [String] The initial tab.
     # @return [PipeSwitcher]
     #
