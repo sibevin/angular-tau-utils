@@ -24,6 +24,10 @@ module.exports = function(grunt) {
             'src/tau_switcher.js.coffee',
             'src/tau-switcher/**/*.coffee',
           ],
+          'lib/tau-checkbox-model.js': [
+            'src/tau_checkbox_model.js.coffee',
+            'src/tau-checkbox-model/**/*.coffee',
+          ],
         }
       }
     },
@@ -47,6 +51,7 @@ module.exports = function(grunt) {
         src: [
           'lib/angular-tau-utils.js',
           'lib/tau-switcher.js',
+          'lib/tau-checkbox-model.js',
         ],
         dest: 'build/angular-tau-utils.js',
       },

@@ -9,3 +9,7 @@ describe "tau-switcher", ->
 
   it "check the existence of CycleSwitcher", inject (CycleSwitcher) ->
     expect(CycleSwitcher).toBeDefined()
+
+  it "check the existence of PipeSwitcher", inject (PipeSwitcher) ->
+    expect(PipeSwitcher).toBeDefined()
+
