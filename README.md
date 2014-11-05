@@ -31,6 +31,7 @@ angular.module('myApp', ['tau-switcher'])
 Here is the tua module list:
 
 * tau-switcher
+* tau-checkbox-model
 
 ### tau-switcher
 
@@ -99,8 +100,6 @@ app.controller("MyCtrl", [
 ]);
 ```
 
-`CycleSwitcher` is for handling cycle-switching tabs.
-
 ```html
 <div class="tab-menu">
   <ul>
@@ -151,6 +150,44 @@ app.controller("MyCtrl", [
 #### Another ng-switch ?
 
 Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.
+
+### tau-checkbox-model
+
+`tau-checkbox-model` module provides the `CheckboxModel` service.
+
+#### CheckboxModel
+
+`CheckboxModel` is a service to handle a group of checkboxes.
+
+```js
+var app = angular.module('MyApp', ["tau-checkbox-model"]);
+
+app.controller("MyCtrl", [
+  '$scope', 'CheckboxModel', function($scope, CheckboxModel) {
+    $scope.roles = ["user", "manager", "admin"];
+    $scope.roles_m = {};
+    $scope.cm = new CheckboxModel({
+      cands: $scope.roles,
+      model: $scope.roles_m
+    });
+  }
+]);
+```
+
+```html
+<ul>
+  <li><a herf="" ng-click="cm.selectAll()">Select All</a></li>
+  <li><a herf="" ng-click="cm.selectAll(false)">Unselect All</a></li>
+  <li><a herf="" ng-class="{disable: cm.isSelected('user')}" ng-click="cm.select('user')">Select "user"</a></li>
+  <li><a herf="" ng-class="{disable: !cm.isSelected('user')}" ng-click="cm.select('user', false)">Unselect "user"</a></li>
+</ul>
+<div ng-repeat="role in roles">
+  <input name="role" ng-model="roles_m[role]" type="checkbox" /> {{ role }}
+</div>
+```
+#### Why not use a directive ?
+
+Using a directive means the feature is binding with a DOM, it is not flexible and limits the usage. `CheckboxModel` can be applied to any kinds of checkboxes as long as they are using `ng-model`.
 
 ## Development
 
