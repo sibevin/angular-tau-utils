@@ -1,5 +1,5 @@
 describe "angular-tau-utils", ->
-  beforeEach(module("angular-tau-utils"))
+  beforeEach(module("tau-utils"))
 
   it "check the existence of TabSwitcher", inject (TabSwitcher) ->
     expect(TabSwitcher).toBeDefined()

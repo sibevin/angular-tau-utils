@@ -14,10 +14,10 @@ Utilitis for AngularJS app
 
 ## Usage
 
-Include `angular-tau-utils` in your app dependence, then all tau modules are reday to use.
+Include `tau-utils` in your app dependence, then all tau modules are reday to use.
 
 ```js
-angular.module('myApp', ['angular-tau-utils'])
+angular.module('myApp', ['tau-utils'])
 ```
 
 ## Tau Modules
