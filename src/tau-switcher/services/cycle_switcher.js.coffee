@@ -61,7 +61,7 @@ angular.module("tau-switcher").factory "CycleSwitcher", ->
     # The cycle switcher constructor
     #
     # @param tabs [Array<String>] The initial tabs. The first tab
-    #        in the initial tabs would become the initial tab.
+    #   in the initial tabs would become the initial tab.
     # @return [CycleSwitcher]
     #
     constructor: (tabs = @DEFAULT_TABS) ->
