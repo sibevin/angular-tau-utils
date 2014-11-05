@@ -43,11 +43,12 @@
 <li>Github: <a href="https://github.com/sibevin/angular-tau-utils">https://github.com/sibevin/angular-tau-utils</a></li>
 <li>Issue Report: <a href="https://github.com/sibevin/angular-tau-utils/issues">https://github.com/sibevin/angular-tau-utils/issues</a></li>
 </ul>
-<h2 id="usage">Usage</h2><p>Include <code>angular-tau-utils</code> in your app dependence, then all tau modules are reday to use.</p><pre><code class="lang-js">angular.module(&#39;myApp&#39;, [&#39;angular-tau-utils&#39;])
+<h2 id="usage">Usage</h2><p>Include <code>tau-utils</code> in your app dependence, then all tau modules are reday to use.</p><pre><code class="lang-js">angular.module(&#39;myApp&#39;, [&#39;tau-utils&#39;])
 </code></pre>
 <h2 id="tau-modules">Tau Modules</h2><p><code>angular-tau-utils</code> is separated into different tau modules, and you can use them individually. For example, if only <code>tau-switcher</code> is used, you can just add <code>tau-switcher</code> in your app dependence.</p><pre><code class="lang-js">angular.module(&#39;myApp&#39;, [&#39;tau-switcher&#39;])
 </code></pre><p>Here is the tua module list:</p><ul>
 <li>tau-switcher</li>
+<li>tau-checkbox-model</li>
 </ul>
 <h3 id="tau-switcher">tau-switcher</h3><p><code>tau-switcher</code> module provides several services: <code>TabSwitcher</code>, <code>BoolSwitcher</code>, <code>CycleSwitcher</code> and <code>PipeSwitcher</code>.</p><h4 id="tabswitcher">TabSwitcher</h4><p><code>TabSwitcher</code> is a service to handle the tab-switching. A tab can be any kinds of object, but <code>string</code> should be enough to handle most of usage cases.</p><pre><code class="lang-js">var app = angular.module(&#39;MyApp&#39;, [&quot;tau-switcher&quot;]);
 
@@ -89,7 +90,8 @@ app.controller(&quot;MyCtrl&quot;, [
     $scope.cs = new CycleSwitcher([&quot;case1&quot;, &quot;case2&quot;, &quot;case3&quot;]);
   }
 ]);
-</code></pre><p><code>CycleSwitcher</code> is for handling cycle-switching tabs.</p><pre><code class="lang-html">&lt;div class=&quot;tab-menu&quot;&gt;
+</code></pre>
+<pre><code class="lang-html">&lt;div class=&quot;tab-menu&quot;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cs.prev()&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cs.next()&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
@@ -126,7 +128,30 @@ app.controller(&quot;MyCtrl&quot;, [
   &lt;div ng-show=&quot;ps.isTab(&#39;step4&#39;)&quot;&gt;&lt;h1&gt;Step4&lt;/h1&gt;&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-<h4 id="another-ng-switch-">Another ng-switch ?</h4><p>Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.</p><h2 id="development">Development</h2><p>Clone the source from the repo</p><pre><code>git clone git@github.com:sibevin/angular-tau-utils.git
+<h4 id="another-ng-switch-">Another ng-switch ?</h4><p>Sometimes, I just want to show/hide some elements according to some variables, ng-switch seems overwhelming to me. On the other hand, ng-switch creates the sub-scope which may just bring troubles and redundances.</p><h3 id="tau-checkbox-model">tau-checkbox-model</h3><p><code>tau-checkbox-model</code> module provides the <code>CheckboxModel</code> service.</p><h4 id="checkboxmodel">CheckboxModel</h4><p><code>CheckboxModel</code> is a service to handle a group of checkboxes.</p><pre><code class="lang-js">var app = angular.module(&#39;MyApp&#39;, [&quot;tau-checkbox-model&quot;]);
+
+app.controller(&quot;MyCtrl&quot;, [
+  &#39;$scope&#39;, &#39;CheckboxModel&#39;, function($scope, CheckboxModel) {
+    $scope.roles = [&quot;user&quot;, &quot;manager&quot;, &quot;admin&quot;];
+    $scope.roles_m = {};
+    $scope.cm = new CheckboxModel({
+      cands: $scope.roles,
+      model: $scope.roles_m
+    });
+  }
+]);
+</code></pre>
+<pre><code class="lang-html">&lt;ul&gt;
+  &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cm.selectAll()&quot;&gt;Select All&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a herf=&quot;&quot; ng-click=&quot;cm.selectAll(false)&quot;&gt;Unselect All&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: cm.isSelected(&#39;user&#39;)}&quot; ng-click=&quot;cm.select(&#39;user&#39;)&quot;&gt;Select &quot;user&quot;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a herf=&quot;&quot; ng-class=&quot;{disable: !cm.isSelected(&#39;user&#39;)}&quot; ng-click=&quot;cm.select(&#39;user&#39;, false)&quot;&gt;Unselect &quot;user&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div ng-repeat=&quot;role in roles&quot;&gt;
+  &lt;input name=&quot;role&quot; ng-model=&quot;roles_m[role]&quot; type=&quot;checkbox&quot; /&gt; {{ role }}
+&lt;/div&gt;
+</code></pre>
+<h4 id="why-not-use-a-directive-">Why not use a directive ?</h4><p>Using a directive means the feature is binding with a DOM, it is not flexible and limits the usage. <code>CheckboxModel</code> can be applied to any kinds of checkboxes as long as they are using <code>ng-model</code>.</p><h2 id="development">Development</h2><p>Clone the source from the repo</p><pre><code>git clone git@github.com:sibevin/angular-tau-utils.git
 </code></pre><p>Prepare development env, install bower and npm packages</p><pre><code>npm install
 bower install
 </code></pre><p>To build the source</p><pre><code>grunt build
@@ -145,7 +170,7 @@ bower install
       </div>
     </div>
     <div id='footer'>
-  October 23, 14 12:58:53 by
+  November 05, 14 18:24:44 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

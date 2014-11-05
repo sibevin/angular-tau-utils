@@ -19,60 +19,39 @@
       Index
     </a>
     &raquo;
-    <span class='title'>BoolSwitcher</span>
+    <span class='title'>CheckboxModel</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        BoolSwitcher
+        CheckboxModel
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>src&#47;tau-switcher&#47;services&#47;bool_switcher.js.coffee</td>
+          <td>src&#47;tau-checkbox-model&#47;services&#47;checkbox_model.js.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>The bool switcher class</p>
+  <p>The checkbox model class</p>
 </div>
 <div class='tags'>
 </div>
       <h2>Variables Summary</h2>
       <dl class='constants'>
-  <dt id='DEFAULT_BOOL-variable'>
-    DEFAULT_BOOL
+  <dt id='_cm_data-variable'>
+    _cm_data
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>false</code></pre>
+    <pre><code class='coffeescript'>{
+  cands: [],
+  model: {}
+}</code></pre>
     <div class='docstring'>
-  <p>The default initial boolean</p>
-</div>
-<div class='tags'>
-</div>
-  </dd>
-  <dt id='_init_bool-variable'>
-    _init_bool
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'></code></pre>
-    <div class='docstring'>
-  <p>The initial boolean</p>
-</div>
-<div class='tags'>
-</div>
-  </dd>
-  <dt id='_current_bool-variable'>
-    _current_bool
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'></code></pre>
-    <div class='docstring'>
-  <p>The current boolean</p>
+  <p>The checkbox model data</p>
 </div>
 <div class='tags'>
 </div>
@@ -82,55 +61,54 @@
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#reset-dynamic'>
+      <a href='#selectAll-dynamic'>
         #
 (void)
-<b>reset</b><span>()</span>
+<b>selectAll</b><span>(selected = true)</span>
       </a>
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Reset the current boolean to the initial boolean 
+      Select/Unselect all candidates 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#getBool-dynamic'>
+      <a href='#list-dynamic'>
+        #
+(Array&lt;String&gt;)
+<b>list</b><span>()</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      List the selected candidates 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#select-dynamic'>
+        #
+(void)
+<b>select</b><span>(cand, selected = true)</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Select/Unselect one of candidate 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isSelected-dynamic'>
         #
 (Boolean)
-<b>getBool</b><span>()</span>
+<b>isSelected</b><span>(cand = null)</span>
       </a>
     </span>
     <span class='bound note title'>Bound</span>
     <span class='desc'>
-      Get the current boolean 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#setBool-dynamic'>
-        #
-(void)
-<b>setBool</b><span>(bool)</span>
-      </a>
-    </span>
-    <span class='bound note title'>Bound</span>
-    <span class='desc'>
-      Set the current boolean 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#switch-dynamic'>
-        #
-(void)
-<b>switch</b><span>()</span>
-      </a>
-    </span>
-    <span class='bound note title'>Bound</span>
-    <span class='desc'>
-      Switch to the current boolean, apply &quot;not&quot; operation on the current boolean.
-
+      Check the given candidate is selected or not 
     </span>
   </li>
 </ul>
@@ -139,32 +117,32 @@
   <div class='method_details'>
     <p class='signature' id='constructor-dynamic'>
       #
-(BoolSwitcher)
-<b>constructor</b><span>(bool = @DEFAULT_BOOL)</span>
+(CheckboxModel)
+<b>constructor</b><span>(cm_data)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>The bool switcher constructor</p>
+  <p>The checkbox model constructor</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
   <ul class='param'>
     <li>
-      <span class='name'>bool</span>
+      <span class='name'>cm_data</span>
       <span class='type'>
         (
-          <tt>Boolean</tt>
+          <tt>Object</tt>
         )
       </span>
       &mdash;
-      <span class='desc'>The initial boolean. </span>
+      <span class='desc'>An object contains &quot;cands&quot; and &quot;model&quot; attributes, which &quot;cands&quot; is an array of initial candidates and &quot;model&quot; is the checkbox model. </span>
     </li>
   </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
       <span class='type'></span>
-      <tt><a href='../class/BoolSwitcher.html'>BoolSwitcher</a></tt>
+      <tt><a href='../class/CheckboxModel.html'>CheckboxModel</a></tt>
     </li>
   </ul>
 </div>
@@ -173,31 +151,119 @@
       <h2>Instance Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='reset-dynamic'>
+    <p class='signature' id='selectAll-dynamic'>
       #
 (void)
-<b>reset</b><span>()</span>
+<b>selectAll</b><span>(selected = true)</span>
       <span class='bound note'>Bound</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Reset the current boolean to the initial boolean</p>
+  <p>Select/Unselect all candidates</p>
 </div>
 <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>selected</span>
+      <span class='type'>
+        (
+          <tt>Boolean</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>true for selection , false for un-selection. </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='getBool-dynamic'>
+    <p class='signature' id='list-dynamic'>
       #
-(Boolean)
-<b>getBool</b><span>()</span>
+(Array&lt;String&gt;)
+<b>list</b><span>()</span>
       <span class='bound note'>Bound</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Get the current boolean</p>
+  <p>List the selected candidates</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Array&lt;String&gt;</tt>
+      )
+      &mdash;
+      <span class='desc'>The selected candidates. </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='select-dynamic'>
+      #
+(void)
+<b>select</b><span>(cand, selected = true)</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Select/Unselect one of candidate</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>cand</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The candidate to select/unselect. </span>
+    </li>
+    <li>
+      <span class='name'>selected</span>
+      <span class='type'>
+        (
+          <tt>Boolean</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>true for selection, false for un-selection. </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='isSelected-dynamic'>
+      #
+(Boolean)
+<b>isSelected</b><span>(cand = null)</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Check the given candidate is selected or not</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>cand</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The candidate to check. If no candidate is given, it return true if something is selected. </span>
+    </li>
+  </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
@@ -206,51 +272,9 @@
         <tt>Boolean</tt>
       )
       &mdash;
-      <span class='desc'>The current boolean. </span>
+      <span class='desc'>true if the given candidate is selected, otherwise false. </span>
     </li>
   </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='setBool-dynamic'>
-      #
-(void)
-<b>setBool</b><span>(bool)</span>
-      <span class='bound note'>Bound</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>Set the current boolean</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>bool</span>
-      <span class='type'>
-        (
-          <tt>Boolean</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>A boolean to assign to the current boolean. </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='switch-dynamic'>
-      #
-(void)
-<b>switch</b><span>()</span>
-      <span class='bound note'>Bound</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>Switch to the current boolean,
-apply &quot;not&quot; operation on the current boolean.</p>
-</div>
-<div class='tags'>
 </div>
   </div>
 </div>
